@@ -20,7 +20,7 @@ namespace EncuestasITESRC.Repositories
                 {
                     Id = x.Id,
                     Nombre = x.Nombre,
-                    Descripcion = x.Descripcion
+                    Clave = x.Clave
                 }).FirstOrDefault();
         }
         public void Insert(DACarrerasViewModel vm)
@@ -29,7 +29,7 @@ namespace EncuestasITESRC.Repositories
             {
                 Id = vm.Id,
                 Nombre = vm.Nombre,
-                Descripcion = vm.Descripcion
+                Clave = vm.Clave
             };
             Insert(carrera);
             vm.Id = carrera.Id;
@@ -41,15 +41,25 @@ namespace EncuestasITESRC.Repositories
             {
                 a.Id = vm.Id;
                 a.Nombre = vm.Nombre;
-                a.Descripcion = vm.Descripcion;
+                a.Clave = vm.Clave;
                 Update(a);
             }
         } 
-
-        //Ya no poner nombres raros POR FAVOR
         public Carrera GetCarreraByNombre(string nombre)
         {
             return Context.Carrera.FirstOrDefault(x => x.Nombre.ToUpper() == nombre.ToUpper());
+        }
+        public void BajaLogica(int id)
+        {
+            var tem = Context.Carrera.FirstOrDefault(x => x.Id == id);
+            tem.Estatus = false;
+            Update(tem);
+        }
+        public void Recuperacion(int id)
+        {
+            var tem = Context.Carrera.FirstOrDefault(x => x.Id == id);
+            tem.Estatus = true;
+            Update(tem);
         }
     }
 }

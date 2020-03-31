@@ -14,12 +14,15 @@ namespace EncuestasITESRC.Repositories
             return GetAll().OrderBy(x => x.Nombre);
         }
 
+        public IEnumerable<Categoria> GetCategoriasActivas()
+        {
+            return GetAll().Where(x => x.Estatus == true).OrderBy(x => x.Nombre);
+        }
+
         public Categoria GetCategoriaByNombre(string nombre)
         {
             return Context.Categoria.FirstOrDefault(x => x.Nombre.ToUpper() == nombre.ToUpper());
         }
-
-
         public DACategoriasViewModel GetCategoriaById(int Id)
         {
             return Context.Categoria.Where(x => x.Id == Id)
@@ -30,14 +33,14 @@ namespace EncuestasITESRC.Repositories
                     Descripcion = x.Descripcion
                 }).FirstOrDefault();
         }
-
         public void Insert(DACategoriasViewModel vm)
         {
             Categoria categoria = new Categoria
             {
                 Id = vm.Id,
                 Nombre = vm.Nombre,
-                Descripcion = vm.Descripcion
+                Descripcion = vm.Descripcion,
+                Estatus = true
             };
             Insert(categoria);
             vm.Id = categoria.Id;
@@ -59,7 +62,6 @@ namespace EncuestasITESRC.Repositories
             tem.Estatus = false;
             Update(tem);
         }
-
         public void Recuperacion(int id)
         {
             var tem = Context.Categoria.FirstOrDefault(x => x.Id == id);

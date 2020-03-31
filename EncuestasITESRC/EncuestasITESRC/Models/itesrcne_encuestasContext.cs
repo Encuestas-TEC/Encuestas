@@ -32,7 +32,7 @@ namespace EncuestasITESRC.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseMySql("server=localhost; user id=root; password=root; database=itesrcne_encuestas;");
+                optionsBuilder.UseMySql("server=204.93.216.11; user id=itesrcne_encuest; password=programadores1ncuest; database=itesrcne_encuestas;");
             }
         }
 
@@ -111,7 +111,9 @@ namespace EncuestasITESRC.Models
 
                 entity.Property(e => e.Id).HasColumnType("int(11)");
 
-                entity.Property(e => e.Descripcion).HasColumnType("varchar(100)");
+                entity.Property(e => e.Clave)
+                    .IsRequired()
+                    .HasColumnType("varchar(2)");
 
                 entity.Property(e => e.Estatus).HasColumnType("bit(1)");
 

@@ -23,7 +23,7 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
         public IActionResult Index()
         {
             CategoriasRepository repos = new CategoriasRepository();
-            return View(repos.GetCategorias());
+            return View(repos.GetCategoriasActivas());
         }
         //Administrador ---- Agregar una categorias---------------------------------------------------------------------------------
         [Route("Administrador/AgregarCategoria")]
@@ -147,6 +147,8 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
             }
         }
         //Administrador ---- Eliminar una categoria---------------------------------------------------------------------------------
+       
+        
         [HttpPost]
         public IActionResult EliminarCategoria(int id)
         {
@@ -162,7 +164,12 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
             ViewBag.Mensaje = "La categoria no existe o ya ha sido eliminada.";
             return RedirectToAction("Index");
         }
-        //Administrador ------ Recuperar categoria-----------------------------------------------------------------------
+
+
+
+
+
+        //Administrador ------ Recuperar categoria--
         [HttpPost]
         public IActionResult RecuperarCategoria(int id)
         {

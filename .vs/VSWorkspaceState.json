@@ -1,6 +1,14 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\EncuestasITESRC",
+    "\\EncuestasITESRC\\EncuestasITESRC",
+    "\\EncuestasITESRC\\EncuestasITESRC\\Areas",
+    "\\EncuestasITESRC\\EncuestasITESRC\\Areas\\Administrador",
+    "\\EncuestasITESRC\\EncuestasITESRC\\Areas\\Administrador\\Controllers",
+    "\\EncuestasITESRC\\EncuestasITESRC\\Models",
+    "\\EncuestasITESRC\\EncuestasITESRC\\Repositories"
   ],
+  "SelectedNode": "\\EncuestasITESRC\\EncuestasITESRC\\Models\\Categoria.cs",
   "PreviewInSolutionExplorer": false
 }

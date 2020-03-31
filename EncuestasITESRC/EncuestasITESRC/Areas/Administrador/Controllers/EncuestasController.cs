@@ -19,14 +19,12 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
         {
             Environment = env;
         }
-        //Administrador ------ Encuestas - Index-----------------------------------------------------------------------
         [Route("Administrador/Encuestas")]
         public IActionResult Index()
         {
             EncuestasRepository repos = new EncuestasRepository();
             return View(repos.GetEncuestasActivas());
         }
-        //Administrador ------ Agregar encuestas-----------------------------------------------------------------------
         [Route("Administrador/AgregarEncuestas")]
         public IActionResult AgregarEncuesta()
         {
@@ -67,13 +65,8 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
 
             repos.Insert(encuestas);
             return RedirectToAction("Index", "Encuestas");
-            //}
-            //catch (Exception ex)
-            //{
-            //    ModelState.AddModelError("", ex.Message);
-            //    return View(encuestas);
-            //}
         }
+    
         //Administrador ------ Editar encuestas-----------------------------------------------------------------------
         [Route("Administrador/Encuestas/EditarEncuesta/{id}")]
         public IActionResult EditarEncuesta(int id)
@@ -137,6 +130,7 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
                 return View(vm);
             }
         }
+       
         //Administrador ------ Eliminar encuestas-----------------------------------------------------------------------
         [HttpPost]
         public IActionResult EliminarEncuesta(int id)

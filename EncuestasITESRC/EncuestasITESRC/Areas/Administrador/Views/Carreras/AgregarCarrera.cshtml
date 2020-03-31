@@ -18,8 +18,8 @@
                         <small id="name" class="form-text text-muted">use solo letras </small>
                     </div>
                     <div class="form-group">
-                        <label for="desc">Escriba una breve Descripcion</label>
-                        <textarea asp-for="Descripcion" name="Descripcion" class="form-control" id="desc" rows="3"></textarea>
+                        <label for="desc">Escriba la clave de la carrera</label>
+                        <textarea asp-for="Clave" name="Clave" class="form-control" id="desc" rows="3"></textarea>
                     </div>
 
                     @Html.ValidationSummary()
@@ -27,6 +27,15 @@
                     <button type="submit" class="btn btn-primary">Aceptar</button>
                     <a class="btn btn-primary" href="~/Administrador/Carreras/Index">Cancelar</a>
                 </form>
+                @if (ViewBag.Recuperacion == true)
+                {
+                    <form method="post" action="~/Administrador/Categorias/RecuperarCarrera">
+                        <p>Se ha encontrado una carrera con el mismo nombre</p>
+                        <p>¿Desea recuperarla?</p>
+                        <input type="submit" value="Recuperar" />
+                        <input name="id" id="id" type="hidden" value="@ViewBag.IdCarRec" />
+                    </form>
+                }
             </div>
         </div>
 

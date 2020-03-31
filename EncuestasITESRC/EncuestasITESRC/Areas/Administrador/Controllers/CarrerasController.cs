@@ -25,6 +25,7 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
             CarrerasRepository repos = new CarrerasRepository();
             return View(repos.GetCarreras());
         }
+
         //Administrador ---- Agregar una Carrera
         [Route("Administrador/AgregarCarrera")]
         public IActionResult AgregarCarrera()
@@ -32,7 +33,6 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
             //ViewBag.Admin = 1;
             return View();
         }
-
         [HttpPost]
         public IActionResult AgregarCarrera(DACarrerasViewModel carrera)
         {
@@ -134,6 +134,14 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
             else
                 ViewBag.Mensaje = "La carrera no existe o ya ha sido eliminada.";
 
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult RecuperarCarrera(int id)
+        {
+            CarrerasRepository repos = new CarrerasRepository();
+            repos.Recuperacion(id);
             return RedirectToAction("Index");
         }
     }
