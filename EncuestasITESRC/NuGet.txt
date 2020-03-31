@@ -1,0 +1,5 @@
+Install-Package Pomelo.EntityFrameworkCore.MySql -v 2.1.1
+
+Scaffold-DbContext "server=localhost; user id=root; password=root; database=prueba;" "Pomelo.EntityFrameworkCore.MySql" -o Models
+
+Scaffold-DbContext "server=localhost; user id=root; password=root; database=prueba;" "Pomelo.EntityFrameworkCore.MySql" -o Models -f

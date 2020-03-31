@@ -1,0 +1,116 @@
+﻿@model IEnumerable<EncuestasITESRC.Models.Categoria>
+@{
+    ViewData["Title"] = "Categorias";
+    Layout = "_LayoutAdmin";
+}
+
+<div class="card mb-3">
+    <div class="card-header">
+
+        <h3> <i class="fa fa-table"></i> <span>Lista de las Categorias de las Encuestas</span></h3>
+        <a href="~/Administrador/AgregarCategoria"> <i class="fas fa-plus"></i> <span>Añadir una nueva Categoria a la base de datos</span></a>
+    </div>
+    <div class="card-body">
+        <table id="tableCarreras" class="display responsive nowrap" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Acciones</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th>@item.Nombre</th>
+                        <th><p>@item.Descripcion</p></th>
+
+                        <th>
+                            <a href="~/Administrador/Categorias/EditarCategoria/@item.Id" class="a-edit">
+                                <i class="fas fa-edit"></i>
+                                <span></span>
+                            </a>
+                            <br>
+                            <a href="javascript:eliminar(@item.Id)" class="a-delete">
+                                <i class="fas fa-trash-alt"></i>
+                                <span></span>
+                            </a>
+
+                        </th>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <form method="post" action="~/Administrador/Categorias/EliminarCategoria">
+            <input name="id" id="idCat" type="hidden" />
+        </form>
+
+        <script>
+            function eliminar(idCat) {
+                document.getElementById("idCat").value = idCat;
+                if (confirm('¿Desea eliminar esta categoria?')) {
+                    document.forms[0].submit()
+                };
+            }
+        </script>
+    </div>
+    <script>
+
+ var tableC= $('#tableCarreras').DataTable({
+    "language": {
+      "sProcessing":     "Procesando...",
+                "sLengthMenu":     "Mostrar _MENU_ ",
+                "sZeroRecords":    "No se encontraron resultados",
+                "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                 "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                "sInfoPostFix":    "",
+                "sSearch":        "",
+                "sSearchPlaceholder":"Buscar...",
+                "sUrl":            "",
+                "sInfoThousands":  ",",
+                "sLoadingRecords": "Cargando...",
+                "oPaginate": {
+                    "sFirst":    "Primero",
+                    "sLast":     "Último",
+                    "sNext":     "Siguiente",
+                    "sPrevious": "Anterior"
+                },
+                "oAria": {
+                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                },
+                "buttons": {
+                    "copy": "Copiar",
+                    "colvis": "Visibilidad"
+                }
+    },
+
+  });
+
+tableC( {
+    responsive: {
+        details: {
+            renderer: $.fn.dataTable.Responsive.renderer.tableAll({ tableClass: 'ui table'})
+        }
+    }
+} );
+tableC( 'responsive-resize', function ( e, datatable, columns ) {
+    var count = columns.reduce( function (a,b) {
+        return b === false ? a+1 : a;
+    }, 0 );
+
+    console.log( count +' column(s) are hidden' );
+} );
+tableC( {
+  "autoWidth": true
+} );
+tableC( {
+  "autoWidth": true
+} );
+    </script>
+</div>
+
