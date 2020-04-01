@@ -165,19 +165,12 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
             return RedirectToAction("Index");
         }
 
-
-
-
-
         //Administrador ------ Recuperar categoria--
         [HttpPost]
         public IActionResult RecuperarCategoria(int id)
         {
             CategoriasRepository repos = new CategoriasRepository();
             repos.Recuperacion(id);
-            //var res = repos.GetEncuestaBynombre(titulo);
-
-            //repos.Recuperacion(res.Id);
             return RedirectToAction("Index");
         }
     }

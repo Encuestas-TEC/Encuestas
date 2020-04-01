@@ -12,6 +12,10 @@ namespace EncuestasITESRC.Repositories
         public IEnumerable<Carrera> GetCarreras()
         {
             return GetAll().OrderBy(x => x.Nombre);
+        }     
+        public Carrera GetCarreraByNombre(string nombre)
+        {
+            return Context.Carrera.FirstOrDefault(x => x.Nombre.ToUpper() == nombre.ToUpper());
         }
         public DACarrerasViewModel GetCarreraById(int Id)
         {
@@ -23,13 +27,20 @@ namespace EncuestasITESRC.Repositories
                     Clave = x.Clave
                 }).FirstOrDefault();
         }
+
+        public IEnumerable<Carrera> GetCarrerasActivas()
+        {
+            return GetAll().Where(x => x.Estatus == true).OrderBy(x => x.Nombre);
+
+        }
         public void Insert(DACarrerasViewModel vm)
         {
             Carrera carrera = new Carrera
             {
                 Id = vm.Id,
                 Nombre = vm.Nombre,
-                Clave = vm.Clave
+                Clave = vm.Clave,
+                Estatus = true
             };
             Insert(carrera);
             vm.Id = carrera.Id;
@@ -45,10 +56,7 @@ namespace EncuestasITESRC.Repositories
                 Update(a);
             }
         } 
-        public Carrera GetCarreraByNombre(string nombre)
-        {
-            return Context.Carrera.FirstOrDefault(x => x.Nombre.ToUpper() == nombre.ToUpper());
-        }
+   
         public void BajaLogica(int id)
         {
             var tem = Context.Carrera.FirstOrDefault(x => x.Id == id);

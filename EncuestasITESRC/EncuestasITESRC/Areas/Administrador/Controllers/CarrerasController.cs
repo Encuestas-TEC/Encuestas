@@ -23,7 +23,7 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
         public IActionResult Index()
         {
             CarrerasRepository repos = new CarrerasRepository();
-            return View(repos.GetCarreras());
+            return View(repos.GetCarrerasActivas());
         }
 
         //Administrador ---- Agregar una Carrera
@@ -45,6 +45,11 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
                 if (repos.GetCarreraByNombre(carrera.Nombre) != null)
                 {
                     ModelState.AddModelError("", "Ya existe una carrera con este nombre");
+                    if (repos.GetCarreraByNombre(carrera.Nombre).Estatus == false)
+                    {
+                        ViewBag.Recuperacion = true;
+                        ViewBag.IdEncRec = repos.GetCarreraByNombre(carrera.Nombre).Id;
+                    }
                     return View(carrera);
                 }
                 if (!resultado)
@@ -119,6 +124,7 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
                 return View(vm);
             }
         }
+       
         //Administrador ---- Eliminar una Carrera
         [HttpPost]
         public IActionResult EliminarCarrera(int id)
@@ -128,12 +134,11 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
             var v = repos.GetById(id);
             if (v != null)
             {
-                repos.Delete(v);
+                repos.BajaLogica(id);
                 ViewBag.Mensaje = "La carrera ha sido eliminada exitosamente.";
             }
             else
-                ViewBag.Mensaje = "La carrera no existe o ya ha sido eliminada.";
-
+            ViewBag.Mensaje = "La carrera no existe o ya ha sido eliminada.";
             return RedirectToAction("Index");
         }
 
