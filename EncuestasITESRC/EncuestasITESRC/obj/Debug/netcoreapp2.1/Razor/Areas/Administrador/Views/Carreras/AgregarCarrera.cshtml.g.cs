@@ -68,12 +68,12 @@ namespace AspNetCore
             WriteLiteral("\r\n        <div class=\"card mb-3\" id=\"card-admin\">\r\n            <div class=\"card-header\">\r\n\r\n                <h3> <i class=\"fas fa-plus\"></i> <span>Añadir Carrera</span></h3>\r\n\r\n            </div>\r\n            <div class=\"card-body\">\r\n                ");
             EndContext();
             BeginContext(401, 997, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e54f817d1c18449287b1adf7544fe802", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9f79544493814e9d909d3ff7c0adce08", async() => {
                 BeginContext(500, 144, true);
                 WriteLiteral("\r\n                    <div class=\"form-group\">\r\n                        <label for=\"exampleInputEmail1\">Nombre</label>\r\n                        ");
                 EndContext();
                 BeginContext(644, 105, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "e78598bf7fe246e98670cbcb7776fdc1", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "75adc1c7db2b4c3c81403253e01215f4", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -108,7 +108,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                         ");
                 EndContext();
                 BeginContext(1027, 90, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("textarea", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8beab18fb82841eab2e5688ebea118c5", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("textarea", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "17a3fa9f946c47338c8d0d4de54ffa66", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_TextAreaTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.TextAreaTagHelper>();
@@ -146,7 +146,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_TextAreaTagHelper.For = ModelExpressionPro
                 WriteLiteral("\r\n\r\n                    <button type=\"submit\" class=\"btn btn-primary\">Aceptar</button>\r\n                    ");
                 EndContext();
                 BeginContext(1302, 71, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a26661f1482449aabb6f34fcd56ebbc0", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3c5b220ed0fa4e5cb11eb4863f5f0edd", async() => {
                     BeginContext(1361, 8, true);
                     WriteLiteral("Cancelar");
                     EndContext();
@@ -200,7 +200,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_TextAreaTagHelper.For = ModelExpressionPro
             WriteLiteral("                    ");
             EndContext();
             BeginContext(1491, 393, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1a4b72518d7747c18a378f194b3c3aaf", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1d2e0efe55944648a9dd03bf8fb520ad", async() => {
                 BeginContext(1562, 264, true);
                 WriteLiteral(@"
                         <p>Se ha encontrado una carrera con el mismo nombre</p>

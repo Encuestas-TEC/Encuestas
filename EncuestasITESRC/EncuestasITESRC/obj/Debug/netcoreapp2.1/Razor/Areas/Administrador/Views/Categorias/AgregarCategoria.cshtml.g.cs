@@ -68,12 +68,12 @@ namespace AspNetCore
             WriteLiteral("\r\n        <div class=\"card mb-3\" id=\"card-admin\">\r\n            <div class=\"card-header\">\r\n\r\n                <h3> <i class=\"fas fa-plus\"></i> <span>Añadir Categoria</span></h3>\r\n\r\n            </div>\r\n            <div class=\"card-body\">\r\n                ");
             EndContext();
             BeginContext(408, 1016, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ef832859a8414ca19c54e3d219226f2a", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "889440a7228b42038b42448b3beb8132", async() => {
                 BeginContext(511, 144, true);
                 WriteLiteral("\r\n                    <div class=\"form-group\">\r\n                        <label for=\"exampleInputEmail1\">Nombre</label>\r\n                        ");
                 EndContext();
                 BeginContext(655, 105, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "d70a1adb10a9452cbfcbb654601d24b5", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "46e58418e0b44cabbd4da5eea3fe900e", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -108,7 +108,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                         ");
                 EndContext();
                 BeginContext(1037, 102, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("textarea", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d7c456bb82754846aa7972a00e9c5fdf", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("textarea", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "528454321f7144a19521071f3bb51500", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_TextAreaTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.TextAreaTagHelper>();
@@ -146,7 +146,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_TextAreaTagHelper.For = ModelExpressionPro
                 WriteLiteral("\r\n\r\n                    <button type=\"submit\" class=\"btn btn-primary\">Aceptar</button>\r\n                    ");
                 EndContext();
                 BeginContext(1326, 73, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "07204427117a492ca30899a72d0b466e", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "01d6ce57a6984c22b4fa13e059f1a135", async() => {
                     BeginContext(1387, 8, true);
                     WriteLiteral("Cancelar");
                     EndContext();
@@ -200,7 +200,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_TextAreaTagHelper.For = ModelExpressionPro
             WriteLiteral("                    ");
             EndContext();
             BeginContext(1517, 399, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "56536868bbad4d2aa0a6e7c5ac09e721", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "26fab2418709410a8f8277532f8d7bdc", async() => {
                 BeginContext(1592, 266, true);
                 WriteLiteral(@"
                         <p>Se ha encontrado una categoria con el mismo nombre</p>
