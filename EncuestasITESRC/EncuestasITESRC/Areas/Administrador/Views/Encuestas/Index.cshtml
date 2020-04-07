@@ -3,187 +3,179 @@
     ViewData["Title"] = "Encuestas";
     Layout = "_LayoutAdmin";
 }
+
+@*Nuevo Diseño*@
+
 <div class="card mb-3">
+
     <div class="card-header">
-        <h3> <i class="fa fa-table"></i> <span>Lista de  las Encuestas</span></h3>
-        <a href="~/Administrador/AgregarEncuestas"> <i class="fas fa-plus"></i> <span>Añadir una nueva encuesta a la base de datos</span></a>
-    </div>
-    <div class="card-body">
-        <table id="tableCarreras" class="display responsive nowrap" style="width:100%">
-            <thead>
-                <tr>
-                    <th>Estado</th>
-                    <th>Nombre</th>
-                    <th>Categoria</th>
-                    <th>Descripcion</th>
-                    <th>N° Preguntas</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <th style="text-align: center;"><span class="staus inactive"><i class="fas fa-circle"></i></span></th>
-                        <th>@item.Titulo</th>
-                        <th>@item.Descripcion</th>
-                        <th>
-                            <div class="encuestas-actions">
-                                <a href="~/Administrador/AgregarPreguntas/@item.Id" data-toggle="modal" data-target="#addQModal"><i class="fas fa-plus"></i><span></span></a>
-                                <br>
-                                <a href="~/Administrador/EditarEncuesta/@item.Id" data-toggle="modal" data-target="#editModal"><i class="fas fa-edit"></i><span></span></a>
-                                <br>
-                                <a href="javascript:eliminar(@item.Id)">
-                                    <i class="fas fa-trash-alt"></i>
-                                    <span>Eliminar Encuesta</span>
-                                </a>
-                                <br> <a href="" data-toggle="modal" data-target="#seeModal"><i class="fas fa-eye"></i> <span></span></a>
-                            </div>
-                        </th>
-                    </tr>
-                }
-            </tbody>
-        </table>
+        <h4 class="title-card">Encuestas</h4>
+        <div class="btn-action">
+            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                <a href="~/Administrador/AgregarEncuestas" type="button" class="btn btn-secondary" style="color: #777777; background-color: white; border: 1px solid #b5babe">Agregar encuestas</a>
 
-        <form method="post" action="~/Administrador/Encuestas/EliminarEncuesta">
-            <input name="id" id="idEncuesta" type="hidden" />
-        </form>
-
-        <script>
-            function eliminar(idEncuesta) {
-                document.getElementById("idEncuesta").value = idEncuesta;
-                if (confirm('¿Desea eliminar esta encuesta?')) {
-                    document.forms[0].submit()
-                };
-            }
-        </script>
-
-    </div>
-    <script>
-        var tableC = $('#tableCarreras').DataTable({
-            "language": {
-                "sProcessing": "Procesando...",
-                "sLengthMenu": "Mostrar _MENU_ ",
-                "sZeroRecords": "No se encontraron resultados",
-                "sEmptyTable": "Ningún dato disponible en esta tabla",
-                "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-                "sInfoPostFix": "",
-                "sSearch": "",
-                "sSearchPlaceholder": "Buscar...",
-                "sUrl": "",
-                "sInfoThousands": ",",
-                "sLoadingRecords": "Cargando...",
-                "oPaginate": {
-                    "sFirst": "Primero",
-                    "sLast": "Último",
-                    "sNext": "Siguiente",
-                    "sPrevious": "Anterior"
-                },
-                "oAria": {
-                    "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                },
-                "buttons": {
-                    "copy": "Copiar",
-                    "colvis": "Visibilidad"
-                }
-            },
-
-        });
-
-        tableC({
-            responsive: {
-                details: {
-                    renderer: $.fn.dataTable.Responsive.renderer.tableAll({ tableClass: 'ui table' })
-                }
-            }
-        });
-        tableC('responsive-resize', function (e, datatable, columns) {
-            var count = columns.reduce(function (a, b) {
-                return b === false ? a + 1 : a;
-            }, 0);
-
-            console.log(count + ' column(s) are hidden');
-        });
-        tableC({
-            "autoWidth": true
-        });
-        tableC({
-            "autoWidth": true
-        });
-    </script>
-    @*<a href="~/Areas/Administrador/Views/Home/Categorias.cshtml">~/Areas/Administrador/Views/Home/Categorias.cshtml</a>*@
-    <!-- modals -->
-    <!-- delete -->
-    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Eliminar Encuesta</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">¿Desea eliminar esta encuesta?</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-primary" href="#">Eliminar</a>
+                <div class="btn-group" role="group">
                 </div>
             </div>
         </div>
+
     </div>
-    <!-- Editar -->
-    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Editar encuesta</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">¿Desea editar la información de la encuesta?</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-primary" href="#">Editar</a>
-                </div>
+    <div class="card-body" id="lista">
+
+        <input class="search" placeholder="Buscar..." />
+        <div class="orderbyDiv">
+            <label class="order">Ordenar por:</label>
+
+            <button class="sort btn btn-outline-secondary" data-sort="name">
+                Nombre
+            </button>
+            <button class="sort btn btn-outline-secondary" data-sort="cat">
+                Categorias
+            </button>
+        </div>
+
+        @foreach (var item in Model)
+        {
+            <ul class="list-group list" style="width: 100%;">
+                <li class="list-group-item hvr-glow">
+                    <div class="list-item-float-l">
+                        <h5 class="name">@item.Titulo</h5>
+                        <p>
+                            <span class="cat item-cat"></span>
+                            <span class="item-status">Estado :</span>
+                        </p>
+
+                    </div>
+                    <div class="list-item-float-r">
+                        <a href="" class="list-item-action" data-toggle="modal" data-target="#addQModal"><i class="fas fa-plus-circle"></i></a>
+                        <a href="" class="list-item-action"><i class="fas fa-edit"></i></a>
+                        <a href="" class="list-item-action" @*data-toggle="modal" data-target="#deleteModal"*@><i class="far fa-trash-alt"></i></a>
+                        <a href="" class="list-item-action" data-toggle="modal" data-target="#seeModal"><i class="fas fa-eye"></i> </a>
+                    </div>
+                </li>
+            </ul>
+        }
+    </div>
+
+    <div class="no-result" style="display: none;">
+        <div class="alert alert-warning alert-dismissible fade show">
+            <!-- <button type="button" class="close" data-dismiss="alert">&times;</button> -->
+            <svg class="bi bi-exclamation-triangle" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" style="margin-right: 5px;" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M7.938 2.016a.146.146 0 00-.054.057L1.027 13.74a.176.176 0 00-.002.183c.016.03.037.05.054.06.015.01.034.017.066.017h13.713a.12.12 0 00.066-.017.163.163 0 00.055-.06.176.176 0 00-.003-.183L8.12 2.073a.146.146 0 00-.054-.057A.13.13 0 008.002 2a.13.13 0 00-.064.016zm1.044-.45a1.13 1.13 0 00-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z" clip-rule="evenodd" />
+                <path d="M7.002 12a1 1 0 112 0 1 1 0 01-2 0zM7.1 5.995a.905.905 0 111.8 0l-.35 3.507a.552.552 0 01-1.1 0L7.1 5.995z" />
+            </svg>
+            <strong>No hay resultados!</strong> Busque un nuevo elemento en la lista
+        </div>
+    </div>
+</div>
+
+<script>
+
+</script>
+<script>
+    var options = {
+        valueNames: ['name', 'cat']
+    };
+
+
+    var userList = new List('lista', options);
+    userList.on('updated', function (list) {
+        if (list.matchingItems.length > 0) {
+            $('.no-result').hide()
+        } else {
+            $('.no-result').show()
+        }
+    })
+
+</script>
+
+<!-- modals -->
+<!-- delete -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Eliminar Pregunta</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">¿Esta Seguro de eliminar esta pregunta ?</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" style="border-radius: 5px;" data-dismiss="modal">Cancelar</button>
+                <a class="btn btn-primary" href="#">Eliminar</a>
             </div>
         </div>
     </div>
-    <!-- ver   -->
-    <div class="modal fade" id="seeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ver Encuesta</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">¿Desea visualizar la encuesta?</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-primary" href="#">Ver</a>
-                </div>
+</div>
+<!-- Editar -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar Encuesta</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Desea editar la información de {nombre Encuesta} ?</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                <a class="btn btn-primary" href="#">Editar</a>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="addQModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Añadir preguntas</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Actualmente la encuesta cuenta con {#} preguntas ¿Desea agregar preguntas?</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-primary" href="#">Agregar Preguntas</a>
-                </div>
+</div>
+<!-- ver   -->
+<div class="modal fade" id="seeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ver Encuesta</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Desea Ver la información contenida en {nombre Encuesta} ?</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                <a class="btn btn-primary" href="#">Ver</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="addQModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{Nombre Encuesta}</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Actualmente la encuesta cuenta con {#} Preguntas desea agregar preguntas</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                <a class="btn btn-primary" href="#">Agregar Preguntas</a>
+            </div>
+        </div>
+    </div>
+</div>
+    </main>
+<!-- cerrar sesion -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">¿Desea Cerrar Sesión?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Para confirmar presione <code>Cerrar Sesión</code>, para cancelar seleccione <code>Cancelar</code> </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                <a class="btn btn-primary" href="login.html">Cerrar Sesión</a>
             </div>
         </div>
     </div>

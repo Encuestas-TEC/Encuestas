@@ -19,7 +19,7 @@
                     </div>
                     <div class="form-group">
                         <label for="desc">Escriba la clave de la carrera</label>
-                        <textarea asp-for="Clave" name="Clave" class="form-control" id="desc" rows="3"></textarea>
+                        <input asp-for="Clave" name="Clave" class="form-control" id="desc" rows="3">
                     </div>
 
                     @Html.ValidationSummary()
@@ -32,7 +32,7 @@
                     <form method="post" action="~/Administrador/Carreras/RecuperarCarrera">
                         <p>Se ha encontrado una carrera con el mismo nombre</p>
                         <p>¿Desea recuperarla?</p>
-                        <input type="submit" value="Recuperar" />
+                        <input class="btn btn-primary" type="submit" value="Recuperar"/>
                         <input name="id" id="id" type="hidden" value="@ViewBag.IdEncRec" />
                     </form>
                 }
