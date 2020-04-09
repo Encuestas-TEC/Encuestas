@@ -269,3 +269,4 @@ C:\Users\Romar\OneDrive\Escritorio\Encuestas\EncuestasITESRC\EncuestasITESRC\obj
 C:\Users\Romar\OneDrive\Escritorio\Encuestas\EncuestasITESRC\EncuestasITESRC\obj\Debug\netcoreapp2.1\EncuestasITESRC.dll
 C:\Users\Romar\OneDrive\Escritorio\Encuestas\EncuestasITESRC\EncuestasITESRC\obj\Debug\netcoreapp2.1\EncuestasITESRC.pdb
 C:\Users\Romar\OneDrive\Escritorio\Encuestas\EncuestasITESRC\EncuestasITESRC\obj\Debug\netcoreapp2.1\EncuestasITESRC.csproj.CopyComplete
+C:\Users\Romar\OneDrive\Escritorio\Encuestas\EncuestasITESRC\EncuestasITESRC\obj\Debug\netcoreapp2.1\Razor\Areas\Administrador\Views\Encuestas\EditarEncuesta.cshtml.g.cs

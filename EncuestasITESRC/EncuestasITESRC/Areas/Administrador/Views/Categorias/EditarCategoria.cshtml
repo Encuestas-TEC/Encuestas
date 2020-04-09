@@ -11,12 +11,12 @@
 
         </div>
         <div class="card-body">
-            <form method="post" action="~/Administrador/Categorias/EditarCategoria">
+            <form method="post" action="~/Administrador/Categorias/EditarCategoria" enctype="multipart/form-data">
                 <input type="hidden" asp-for="Id" />
                 <div class="form-group">
                     <label for="exampleInputEmail1">Nombre</label>
                     <input asp-for="Nombre" name="Nombre" type="text" class="form-control" id="name" aria-describedby="name">
-                    <small id="name" class="form-text text-muted">use solo letras </small>
+                    <small id="name" class="form-text text-muted">Use solo letras </small>
                 </div>
                 <div class="form-group">
                     <label for="desc">Escriba una breve Descripcion</label>
@@ -25,9 +25,20 @@
 
                 @Html.ValidationSummary()
 
-                <button type="submit" class="btn btn-primary">Aceptar</button>
+                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                 <a class="btn btn-primary" href="~/Administrador/Categorias/Index">Cancelar</a>
             </form>
+
+            @if (ViewBag.Recuperacion == true)
+            {
+                <form method="post" action="~/Administrador/Categorias/RecuperarCategoria">
+                    <p>Se ha encontrado una categoria con el mismo nombre</p>
+                    <p>¿Desea recuperarla?</p>
+                    <input class="btn btn-primary" type="submit" value="Recuperar" />
+                    <input name="id" id="id" type="hidden" value="@ViewBag.IdEncRec" />
+                </form>
+            }
+
         </div>
     </div>
 

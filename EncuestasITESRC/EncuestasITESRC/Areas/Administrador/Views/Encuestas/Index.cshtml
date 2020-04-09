@@ -41,20 +41,35 @@
                     <div class="list-item-float-l">
                         <h5 class="name">@item.Titulo</h5>
                         <p>
-                            <span class="cat item-cat"></span>
-                            <span class="item-status">Estado :</span>
+                            <label class="cat item-cat">Descripcion: @item.Descripcion</label>
+                            <label class="cat item-cat">Categoria: @item.IdCategoriaNavigation.Nombre</label>
+                            <label class="item-status">Estado: @item.Estado</label>
                         </p>
 
                     </div>
                     <div class="list-item-float-r">
-                        <a href="" class="list-item-action" data-toggle="modal" data-target="#addQModal"><i class="fas fa-plus-circle"></i></a>
-                        <a href="" class="list-item-action"><i class="fas fa-edit"></i></a>
-                        <a href="" class="list-item-action" @*data-toggle="modal" data-target="#deleteModal"*@><i class="far fa-trash-alt"></i></a>
-                        <a href="" class="list-item-action" data-toggle="modal" data-target="#seeModal"><i class="fas fa-eye"></i> </a>
+                        <a href="#" class="list-item-action" data-toggle="modal" data-target="#addQModal"><i class="fas fa-plus-circle"></i></a>
+                        <a href="~/Administrador/Encuestas/EditarEncuesta/@item.Id" class="list-item-action"><i class="fas fa-edit"></i></a>
+                        <a href="javascript:eliminar(@item.Id)" class="list-item-action" @*data-toggle="modal" data-target="#deleteModal"*@><i class="far fa-trash-alt"></i></a>
+                        <a href="~/Administrador/Encuestas/VisualizarEncuesta/@item.Id" class="list-item-action" data-toggle="modal" data-target="#seeModal"><i class="fas fa-eye"></i> </a>
                     </div>
                 </li>
             </ul>
         }
+
+        <form method="post" action="~/Administrador/Encuestas/EliminarEncuesta">
+            <input name="id" id="idEncuesta" type="hidden" />
+        </form>
+
+        <script>
+            function eliminar(idEncuesta) {
+                document.getElementById("idEncuesta").value = idEncuesta;
+                if (confirm('¿Desea eliminar esta encuesta?')) {
+                    document.forms[0].submit()
+                };
+            }
+        </script>
+
     </div>
 
     <div class="no-result" style="display: none;">

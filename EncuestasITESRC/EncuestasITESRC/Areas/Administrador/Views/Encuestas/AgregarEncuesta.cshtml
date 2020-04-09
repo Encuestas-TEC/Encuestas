@@ -5,47 +5,46 @@
     Layout = "_LayoutAdmin";
 }
 
-<main>
-        <div class="card mb-3" id="card-admin">
-            <div class="card-header">
-                <h3> <i class="fas fa-plus"></i> <span>Añadir Encuesta</span></h3>
+
+<div class="card mb-3" id="card-admin">
+    <div class="card-header">
+        <h3> <i class="fas fa-plus"></i> <span>Añadir Encuesta</span></h3>
+    </div>
+    <div class="card-body">
+        <form method="post" action="~/Administrador/Encuestas/AgregarEncuesta">
+            <input type="hidden" value="1" asp-for="IdAdministrador">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Nombre</label>
+                <input asp-for="Titulo" name="Titulo" type="text" class="form-control" id="name" aria-describedby="name">
+                <!-- <small id="name" class="form-text text-muted">use solo letras </small> -->
             </div>
-            <div class="card-body">
-                <form method="post" action="~/Administrador/Encuestas/AgregarEncuesta">
-                    <input type="hidden" value="1" asp-for="IdAdministrador">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Nombre</label>
-                        <input asp-for="Titulo" name="Titulo" type="text" class="form-control" id="name" aria-describedby="name">
-                        <!-- <small id="name" class="form-text text-muted">use solo letras </small> -->
-                    </div>
 
-                    <div class="form-group ">
-                        <label for="cate">Categoria</label>
-                        <select asp-for="IdCategoria"
-                                asp-items="@(new SelectList(ms.GetNombreCategoria(),"Id","Nombre"))" class="custom-select form-control" id="cate">
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="desc">Escriba una breve Descripcion</label>
-                        <textarea asp-for="Descripcion" name="Descripcion" class="form-control" id="desc" rows="2"></textarea>
-                    </div>
-
-                    <input type="submit" class="btn btn-primary" value="Agregar" />
-                    <a class="btn btn-primary" href="~/Administrador/Encuestas/Index">Cancelar</a>
-
-                    @Html.ValidationSummary()
-
-                </form>
-                @if (ViewBag.Recuperacion == true)
-                {
-                    <form method="post" action="~/Administrador/Encuestas/RecuperarEncuesta">
-                        <p>Se ha encontrado una encuesta con el mismo nombre</p>
-                        <p>¿Desea recuperarla?</p>
-                        <input class="btn btn-primary" type="submit" value="Recuperar" />
-                        <input name="id" id="id" type="hidden" value="@ViewBag.IdEncRec" />
-                    </form>
-                }
+            <div class="form-group ">
+                <label for="cate">Categoria</label>
+                <select asp-for="IdCategoria"
+                        asp-items="@(new SelectList(ms.GetNombreCategoria(),"Id","Nombre"))" class="custom-select form-control" id="cate">
+                </select>
             </div>
-        </div>
- </main>
+
+            <div class="form-group">
+                <label for="desc">Escriba una breve Descripcion</label>
+                <textarea asp-for="Descripcion" name="Descripcion" class="form-control" id="desc" rows="2"></textarea>
+            </div>
+
+            <input type="submit" class="btn btn-primary" value="Agregar" />
+            <a class="btn btn-primary" href="~/Administrador/Encuestas/Index">Cancelar</a>
+
+            @Html.ValidationSummary()
+
+        </form>
+        @if (ViewBag.Recuperacion == true)
+        {
+            <form method="post" action="~/Administrador/Encuestas/RecuperarEncuesta">
+                <p>Se ha encontrado una encuesta con el mismo nombre</p>
+                <p>¿Desea recuperarla?</p>
+                <input class="btn btn-primary" type="submit" value="Recuperar" />
+                <input name="id" id="id" type="hidden" value="@ViewBag.IdEncRec" />
+            </form>
+        }
+    </div>
+</div>

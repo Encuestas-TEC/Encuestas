@@ -12,9 +12,8 @@ namespace EncuestasITESRC.Services
         public IEnumerable<Categoria> GetNombreCategoria()
         {
             CategoriasRepository repos = new CategoriasRepository();
-            var list = repos.GetCategorias();
+            var list = repos.GetCategoriasActivas();
             return list;
         }
-        
     }
 }

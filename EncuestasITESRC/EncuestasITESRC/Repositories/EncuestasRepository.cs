@@ -1,8 +1,10 @@
 ﻿using EncuestasITESRC.Areas.Administrador.Models;
 using EncuestasITESRC.Models;
 using System;
+using System.Net;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
 namespace EncuestasITESRC.Repositories
@@ -11,12 +13,42 @@ namespace EncuestasITESRC.Repositories
     {
         public IEnumerable<Encuesta> GetEncuestas()
         {
-            return GetAll().OrderBy(x => x.Titulo);
+            return Context.Encuesta.Select(x => new Encuesta
+            {
+                Id = x.Id,
+                Titulo = x.Titulo,
+                Descripcion = x.Descripcion,
+                Estado = x.Estado,
+                Estatus = x.Estatus,
+                FechaCreacion = x.FechaCreacion,
+                Encuestado = x.Encuestado,
+                Pregunta = x.Pregunta,
+                IdAdministrador = x.IdAdministrador,
+                IdCategoria = x.IdCategoria,
+                IdAdministradorNavigation = x.IdAdministradorNavigation,
+                IdCategoriaNavigation = x.IdCategoriaNavigation
+            }).Include(x => x.IdCategoriaNavigation).OrderBy(x => x.Titulo);
+
+            //return GetAll().OrderBy(x => x.Titulo);
         }
 
         public IEnumerable<Encuesta> GetEncuestasActivas()
         {
-            return GetAll().Where(x => x.Estatus == true).OrderBy(x => x.Titulo);
+            return Context.Encuesta.Select(x => new Encuesta 
+            { 
+                Id = x.Id,
+                Titulo = x.Titulo,
+                Descripcion = x.Descripcion,
+                Estado = x.Estado, 
+                Estatus = x.Estatus, 
+                FechaCreacion = x.FechaCreacion,
+                Encuestado = x.Encuestado, 
+                Pregunta = x.Pregunta, 
+                IdAdministradorNavigation = x.IdAdministradorNavigation,
+                IdCategoriaNavigation = x.IdCategoriaNavigation
+            }).Include(x => x.IdCategoriaNavigation).Where(x => x.Estatus == true).OrderBy(x => x.Titulo);
+
+            //return GetAll().Where(x => x.Estatus == true).OrderBy(x => x.Titulo);
         }
 
         public DAEncuestasViewModel GetEncuestasById(int Id)

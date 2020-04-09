@@ -72,11 +72,10 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
         public IActionResult EditarEncuesta(int id)
         {
             //ViewBag.Admin = 1;
-            ViewBag.Nombre = id;
+            //ViewBag.Nombre = id;
             EncuestasRepository repos = new EncuestasRepository();
 
             var e = repos.GetEncuestasById(id);
-
 
             if (e == null)
             {

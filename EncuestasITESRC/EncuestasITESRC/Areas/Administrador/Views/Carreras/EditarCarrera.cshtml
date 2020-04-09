@@ -11,7 +11,7 @@
 
         </div>
         <div class="card-body">
-            <form method="post" action="~/Administrador/Carreras/EditarCarrera">
+            <form method="post" action="~/Administrador/Carreras/EditarCarrera" enctype="multipart/form-data">
                 <input type="hidden" asp-for="Id" />
                 <div class="form-group">
                     <label for="exampleInputEmail1">Nombre</label>
@@ -25,9 +25,20 @@
 
                 @Html.ValidationSummary()
 
-                <button type="submit" class="btn btn-primary">Aceptar</button>
+                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                 <a class="btn btn-primary" href="~/Administrador/Carreras/Index">Cancelar</a>
             </form>
+
+            @if (ViewBag.Recuperacion == true)
+            {
+                <form method="post" action="~/Administrador/Carreras/RecuperarCarrera">
+                    <p>Se ha encontrado una carrera con el mismo nombre</p>
+                    <p>¿Desea recuperarla?</p>
+                    <input class="btn btn-primary" type="submit" value="Recuperar" />
+                    <input name="id" id="id" type="hidden" value="@ViewBag.IdEncRec" />
+                </form>
+            }
+
         </div>
     </div>
 
