@@ -68,12 +68,12 @@ namespace AspNetCore
             WriteLiteral("\r\n<div class=\"card mb-3\" id=\"card-admin\">\r\n    <div class=\"card-header\">\r\n\r\n        <h3> <i class=\"fas fa-plus\"></i> <span>Añadir Categoria</span></h3>\r\n\r\n    </div>\r\n    <div class=\"card-body\">\r\n        ");
             EndContext();
             BeginContext(360, 931, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "00be19757ee54c528fce55875025f2bd", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0dd749c9baae47ae8638161e101ab64d", async() => {
                 BeginContext(463, 120, true);
                 WriteLiteral("\r\n            <div class=\"form-group\">\r\n                <label for=\"exampleInputEmail1\">Nombre</label>\r\n                ");
                 EndContext();
                 BeginContext(583, 105, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "a2b1157602b747458de4b4a5bc9cb915", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "05fc76e40fa8420f951615d185f61f92", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -108,7 +108,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 ");
                 EndContext();
                 BeginContext(944, 102, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("textarea", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7164341bdb73423694b85ad1a842a4e0", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("textarea", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d7e751af04cd45698d68de9d6d465670", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_TextAreaTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.TextAreaTagHelper>();
@@ -146,7 +146,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_TextAreaTagHelper.For = ModelExpressionPro
                 WriteLiteral("\r\n\r\n            <button type=\"submit\" class=\"btn btn-primary\">Aceptar</button>\r\n            ");
                 EndContext();
                 BeginContext(1201, 73, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "007e9f481ddd461a94c283ae69086997", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0c741cb275d74538b3649662fafad60e", async() => {
                     BeginContext(1262, 8, true);
                     WriteLiteral("Cancelar");
                     EndContext();
@@ -200,7 +200,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_TextAreaTagHelper.For = ModelExpressionPro
             WriteLiteral("            ");
             EndContext();
             BeginContext(1362, 383, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bc722ae4a8bc4dc691e7ec82ff273046", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fdca1199bc9f4718bc52aa5dc7c7ee4c", async() => {
                 BeginContext(1437, 258, true);
                 WriteLiteral(@"
                 <p>Se ha encontrado una categoria con el mismo nombre</p>
