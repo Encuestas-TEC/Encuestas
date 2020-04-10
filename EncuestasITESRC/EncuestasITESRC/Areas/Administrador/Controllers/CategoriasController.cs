@@ -37,8 +37,8 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
         public IActionResult AgregarCategoria(DACategoriasViewModel categoria)
         {
             //ViewBag.Admin = 1;
-            try
-            {
+            //try
+            //{
                 CategoriasRepository repos = new CategoriasRepository();
                 Regex regex = new Regex(@"^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 ]+$");
                 bool resultado = regex.IsMatch(categoria.Nombre);
@@ -67,12 +67,12 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
                 }
                 repos.Insert(categoria);
                 return RedirectToAction("Index");
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError("", ex.Message);
-                return View(categoria);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    ModelState.AddModelError("", ex.Message);
+            //    return View(categoria);
+            //}
         }
 
         //Administrador ---- Editar una categoria----------------------------------------------------------------------------------
@@ -134,7 +134,6 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
                     repos.Update(vm);
                     return RedirectToAction("Index");
                 //}
-
                 //catch (Exception ex)
                 //{
                 //    ModelState.AddModelError("", ex.Message);
@@ -148,7 +147,6 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
         }
         //Administrador ---- Eliminar una categoria---------------------------------------------------------------------------------
        
-        
         [HttpPost]
         public IActionResult EliminarCategoria(int id)
         {

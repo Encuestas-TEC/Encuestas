@@ -39,13 +39,13 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
             EncuestasRepository repos = new EncuestasRepository();
             Regex regex = new Regex(@"^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 ]+$");
             bool resultado = regex.IsMatch(encuestas.Titulo);
-            if (repos.GetEncuestaBynombre(encuestas.Titulo) != null)
+            if (repos.GetEncuestaByNombre(encuestas.Titulo) != null)
             {
                 ModelState.AddModelError("", "Ya existe una encuesta con este nombre");
-                if (repos.GetEncuestaBynombre(encuestas.Titulo).Estatus == false)
+                if (repos.GetEncuestaByNombre(encuestas.Titulo).Estatus == false)
                 {
                     ViewBag.Recuperacion = true;
-                    ViewBag.IdEncRec = repos.GetEncuestaBynombre(encuestas.Titulo).Id;
+                    ViewBag.IdEncRec = repos.GetEncuestaByNombre(encuestas.Titulo).Id;
                 }
                 return View(encuestas);
             }
@@ -92,14 +92,19 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
             //ViewBag.Admin = 1;
             if (ModelState.IsValid)
             {
-                try
-                {
+                //try
+                //{
                     EncuestasRepository repos = new EncuestasRepository();
                     Regex regex = new Regex(@"^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]+$");
                     bool resultado = regex.IsMatch(vm.Titulo);
-                    if (repos.GetEncuestaBynombre(vm.Titulo) != null)
+                    if (repos.GetEncuestaByNombre(vm.Titulo) != null)
                     {
                         ModelState.AddModelError("", "Ya existe una encuesta con este nombre");
+                        if (repos.GetEncuestaByNombre(vm.Titulo).Estatus == false)
+                        {
+                            ViewBag.Recuperacion = true;
+                            ViewBag.IdEncRec = repos.GetEncuestaByNombre(vm.Titulo).Id;
+                        }
                         return View(vm);
                     }
                     if (!resultado)
@@ -117,12 +122,12 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
                     }
                     repos.Update(vm);
                     return RedirectToAction("Index");
-                }
-                catch (Exception ex)
-                {
-                    ModelState.AddModelError("", ex.Message);
-                    return View(vm);
-                }
+                //}
+                //catch (Exception ex)
+                //{
+                //    ModelState.AddModelError("", ex.Message);
+                //    return View(vm);
+                //}
             }
             else
             {

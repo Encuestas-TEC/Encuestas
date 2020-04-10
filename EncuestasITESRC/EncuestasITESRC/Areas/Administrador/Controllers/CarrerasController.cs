@@ -37,8 +37,8 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
         public IActionResult AgregarCarrera(DACarrerasViewModel carrera)
         {
             //ViewBag.Admin = 1;
-            try
-            {
+            //try
+            //{
                 CarrerasRepository repos = new CarrerasRepository();
                 Regex regex = new Regex(@"^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$");
                 bool resultado = regex.IsMatch(carrera.Nombre);
@@ -59,12 +59,12 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
                 }
                 repos.Insert(carrera);
                 return RedirectToAction("Index");
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError("", ex.Message);
-                return View(carrera);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    ModelState.AddModelError("", ex.Message);
+            //    return View(carrera);
+            //}
 
         }
 
@@ -94,14 +94,19 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
             //ViewBag.Admin = 1;
             if (ModelState.IsValid)
             {
-                try
-                {
+                //try
+                //{
                     CarrerasRepository repos = new CarrerasRepository();
                     Regex regex = new Regex(@"^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$");
                     bool resultado = regex.IsMatch(vm.Nombre);
                     if (repos.GetCarreraByNombre(vm.Nombre) != null)
                     {
                         ModelState.AddModelError("", "Ya existe una carrera con este nombre");
+                        if (repos.GetCarreraByNombre(vm.Nombre).Estatus == false)
+                        {
+                            ViewBag.Recuperacion = true;
+                            ViewBag.IdEncRec = repos.GetCarreraByNombre(vm.Nombre).Id;
+                        }
                         return View(vm);
                     }
 
@@ -112,12 +117,12 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
                     }
                     repos.Update(vm);
                     return RedirectToAction("Index");
-                }
-                catch (Exception ex)
-                {
-                    ModelState.AddModelError("", ex.Message);
-                    return View(vm);
-                }
+                //}
+                //catch (Exception ex)
+                //{
+                //    ModelState.AddModelError("", ex.Message);
+                //    return View(vm);
+                //}
             }
             else
             {

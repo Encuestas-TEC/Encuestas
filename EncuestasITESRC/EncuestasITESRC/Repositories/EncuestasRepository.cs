@@ -101,7 +101,7 @@ namespace EncuestasITESRC.Repositories
             } 
         }
 
-        public Encuesta GetEncuestaBynombre(string nombre)
+        public Encuesta GetEncuestaByNombre(string nombre)
         {
             return Context.Encuesta.FirstOrDefault(x => x.Titulo.ToUpper() == nombre.ToUpper());
         }
