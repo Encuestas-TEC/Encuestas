@@ -152,18 +152,29 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
         {
             //ViewBag.Admin = 1;
             CategoriasRepository repos = new CategoriasRepository();
+            EncuestasRepository ER = new EncuestasRepository();
             var v = repos.GetById(id);
             if (v != null)
             {
-                repos.BajaLogica(id);
-                ViewBag.Mensaje = "La categoria ha sido eliminada exitosamente.";
+                if (ER.Context.Encuesta.Where(x => x.IdCategoria == id).Count() == 0)
+                {
+                    repos.BajaLogica(id);
+                }
+                else
+                {
+                    ViewBag.Eliminar = 1;
+
+                }
+                //ViewBag.Mensaje = "La categoria ha sido eliminada exitosamente.";
             }
-            else
-            ViewBag.Mensaje = "La categoria no existe o ya ha sido eliminada.";
+            //else
+            //{
+            //    ViewBag.Mensaje = "La categoria no existe o ya ha sido eliminada.";
+            //}
             return RedirectToAction("Index");
         }
 
-        //Administrador ------ Recuperar categoria--
+        //Administrador ------ Recuperar categoria ---------------------------------------------------------------------------------
         [HttpPost]
         public IActionResult RecuperarCategoria(int id)
         {

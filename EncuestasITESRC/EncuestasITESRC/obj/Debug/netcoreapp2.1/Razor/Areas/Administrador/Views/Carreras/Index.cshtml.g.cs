@@ -62,7 +62,7 @@ namespace AspNetCore
             WriteLiteral("\r\n<div class=\"card mb-3\">\r\n\r\n\r\n    <div class=\"card-header\">\r\n        <h4 class=\"title-card\">Carreras</h4>\r\n        <div class=\"btn-action\">\r\n            <div class=\"btn-group\" role=\"group\" aria-label=\"Button group with nested dropdown\">\r\n                ");
             EndContext();
             BeginContext(402, 175, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ecbe9b28ed3341038360b4021bceb93b", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "017c526868cb4580b2297fa6c7b85f47", async() => {
                 BeginContext(558, 15, true);
                 WriteLiteral("Agregar Carrera");
                 EndContext();
@@ -133,7 +133,7 @@ namespace AspNetCore
             WriteLiteral("\r\n                        </p>\r\n\r\n                    </div>\r\n                    <div class=\"list-item-float-r\">\r\n                        ");
             EndContext();
             BeginContext(1455, 114, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "eb45d23bb61e458e9e0fee7bbef4cc4d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3bb7d750590e4f798ce13d9f9545bdea", async() => {
                 BeginContext(1538, 27, true);
                 WriteLiteral("<i class=\"fas fa-edit\"></i>");
                 EndContext();
@@ -182,7 +182,7 @@ WriteAttributeValue("", 1624, item.Id, 1624, 8, false);
             WriteLiteral("\r\n        ");
             EndContext();
             BeginContext(1840, 149, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ed63b2a252240818697e04945c9b9f1", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "77f4c90e022942bbaf692341c25cd392", async() => {
                 BeginContext(1910, 72, true);
                 WriteLiteral("\r\n            <input name=\"id\" id=\"idCarrera\" type=\"hidden\" />\r\n        ");
                 EndContext();
