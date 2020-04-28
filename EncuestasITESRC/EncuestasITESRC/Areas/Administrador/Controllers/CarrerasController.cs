@@ -99,24 +99,37 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
                     CarrerasRepository repos = new CarrerasRepository();
                     Regex regex = new Regex(@"^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$");
                     bool resultado = regex.IsMatch(vm.Nombre);
-                    if (repos.GetCarreraByNombre(vm.Nombre) != null)
-                    {
-                        ModelState.AddModelError("", "Ya existe una carrera con este nombre");
-                        if (repos.GetCarreraByNombre(vm.Nombre).Estatus == false)
-                        {
-                            ViewBag.Recuperacion = true;
-                            ViewBag.IdEncRec = repos.GetCarreraByNombre(vm.Nombre).Id;
-                        }
-                        return View(vm);
-                    }
+                //------------------Antiguo--------------------------------------------------------
+                //if (repos.GetCarreraByNombre(vm.Nombre) != null)
+                //{
+                //    ModelState.AddModelError("", "Ya existe una carrera con este nombre");
+                //    if (repos.GetCarreraByNombre(vm.Nombre).Estatus == false)
+                //    {
+                //        ViewBag.Recuperacion = true;
+                //        ViewBag.IdEncRec = repos.GetCarreraByNombre(vm.Nombre).Id;
+                //    }
+                //    return View(vm);
+                //}
+                //------------------Antiguo--------------------------------------------------------
 
-                    if (!resultado)
+                //------------------Nuevo----------------------------------------------------------
+                if (repos.GetCarreraByNombre(vm.Nombre).Id != vm.Id) //Permite editar con el mismo nombre siempre y cuando sea el id original
+                {
+                    ModelState.AddModelError("", "Ya existe una carrera con este nombre");
+                    if (repos.GetCarreraByNombre(vm.Nombre).Estatus == false)
                     {
-                        ModelState.AddModelError("", "El nombre de la carrera no puede contener numeros y/o caracteres especiales.");
-                        return View(vm);
+                        ViewBag.Recuperacion = true;
+                        ViewBag.IdEncRec = repos.GetCarreraByNombre(vm.Nombre).Id;
                     }
-                    repos.Update(vm);
-                    return RedirectToAction("Index");
+                    return View(vm);
+                }
+                if (!resultado)
+                {
+                     ModelState.AddModelError("", "El nombre de la carrera no puede contener numeros y/o caracteres especiales.");
+                     return View(vm);
+                }
+                repos.Update(vm);
+                return RedirectToAction("Index");
                 //}
                 //catch (Exception ex)
                 //{

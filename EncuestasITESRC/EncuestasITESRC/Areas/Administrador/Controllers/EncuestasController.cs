@@ -97,8 +97,8 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
                     EncuestasRepository repos = new EncuestasRepository();
                     Regex regex = new Regex(@"^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]+$");
                     bool resultado = regex.IsMatch(vm.Titulo);
-                    if (repos.GetEncuestaByNombre(vm.Titulo) != null)
-                    {
+                    if (repos.GetEncuestaByNombre(vm.Titulo).Id != vm.Id) //Permite editar con el mismo nombre siempre y cuando sea el id original
+                {
                         ModelState.AddModelError("", "Ya existe una encuesta con este nombre");
                         if (repos.GetEncuestaByNombre(vm.Titulo).Estatus == false)
                         {

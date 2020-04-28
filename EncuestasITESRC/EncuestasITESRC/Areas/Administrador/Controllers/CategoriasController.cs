@@ -107,8 +107,9 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
                     CategoriasRepository repos = new CategoriasRepository();
                     Regex regex = new Regex(@"^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]+$");
                     bool resultado = regex.IsMatch(vm.Nombre);
-                    if (repos.GetCategoriaByNombre(vm.Nombre) != null)
-                    {
+
+                    if (repos.GetCategoriaByNombre(vm.Nombre).Id != vm.Id) //Permite editar con el mismo nombre siempre y cuando sea el id original
+                {
                         ModelState.AddModelError("", "Ya existe una categoria con este nombre");
                         if (repos.GetCategoriaByNombre(vm.Nombre).Estatus == false)
                         {
