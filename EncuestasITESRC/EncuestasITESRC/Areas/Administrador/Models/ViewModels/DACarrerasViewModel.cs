@@ -10,6 +10,7 @@ namespace EncuestasITESRC.Areas.Administrador.Models
     {
         public int Id { get; set; }
         [Required]
+        [MinLength(5)]
         [StringLength(45, ErrorMessage = "El campo excede el limite de caracteres, 45")]
         public string Nombre { get; set; }
 
