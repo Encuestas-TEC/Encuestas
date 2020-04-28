@@ -7,7 +7,7 @@
 <div class="card mb-3" id="card-admin">
     <div class="card-header">
 
-        <h3> <i class="fas fa-plus"></i> <span>Añadir Categoria</span></h3>
+        <h3> <i class="fas fa-plus"></i> <span>Añadir Categoría</span></h3>
 
     </div>
     <div class="card-body">
@@ -18,7 +18,7 @@
                 <small id="name" class="form-text text-muted">Use solo letras </small>
             </div>
             <div class="form-group">
-                <label for="desc">Escriba una breve descripcion sobre la categoria</label>
+                <label for="desc">Escriba una breve descripción sobre la categoría</label>
                 <textarea asp-for="Descripcion" name="Descripcion" class="form-control" id="desc" rows="3"></textarea>
             </div>
 
@@ -32,7 +32,7 @@
         @if (ViewBag.Recuperacion == true)
         {
             <form method="post" action="~/Administrador/Categorias/RecuperarCategoria">
-                <p>Se ha encontrado una categoria con el mismo nombre</p>
+                <p>Se ha encontrado una categoría con el mismo nombre</p>
                 <p>¿Desea recuperarla?</p>
                 <input class="btn btn-primary" type="submit" value="Recuperar" />
                 <input name="id" id="id" type="hidden" value="@ViewBag.IdEncRec" />
