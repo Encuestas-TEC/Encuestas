@@ -39,10 +39,16 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
             //ViewBag.Admin = 1;
             //try
             //{
-                CategoriasRepository repos = new CategoriasRepository();
-                Regex regex = new Regex(@"^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 ]+$");
-                bool resultado = regex.IsMatch(categoria.Nombre);
-                if (repos.GetCategoriaByNombre(categoria.Nombre) != null)
+            CategoriasRepository repos = new CategoriasRepository();
+            Regex regex = new Regex(@"^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 ]{5,}$");
+            bool resultado = regex.IsMatch(categoria.Nombre);
+            int x = categoria.Nombre.Length;
+            if (x < 5)
+            {
+                ModelState.AddModelError("", "El nombre es demasiado corto.");
+                return View(categoria);
+            }
+            if (repos.GetCategoriaByNombre(categoria.Nombre) != null)
                 {
                     ModelState.AddModelError("", "Ya existe una categoria con este nombre");
                     if (repos.GetCategoriaByNombre(categoria.Nombre).Estatus == false)
@@ -51,22 +57,22 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
                         ViewBag.IdEncRec = repos.GetCategoriaByNombre(categoria.Nombre).Id;
                     }
                     return View(categoria);
-                }
-                if (!resultado)
-                {
-                    ModelState.AddModelError("", "El nombre de la categoria no puede contener caracteres especiales.");
-                    return View(categoria);
-                }
-                Regex reg = new Regex(@"[0-9]| $");
-                string exp = categoria.Nombre.Substring(0, 1);
-                bool res = reg.IsMatch(exp);
-                if (res)
-                {
-                    ModelState.AddModelError("", "El nombre de la categoria no puede iniciar con un numero.");
-                    return View(categoria);
-                }
-                repos.Insert(categoria);
-                return RedirectToAction("Index");
+            }
+            if (!resultado)
+            {
+                ModelState.AddModelError("", "El nombre de la categoria no puede contener caracteres especiales.");
+                return View(categoria);
+            }
+            Regex reg = new Regex(@"[0-9]| $");
+            string exp = categoria.Nombre.Substring(0, 1);
+            bool res = reg.IsMatch(exp);
+            if (res)
+            {
+                ModelState.AddModelError("", "El nombre de la categoria no puede iniciar con un numero.");
+                return View(categoria);
+            }
+            repos.Insert(categoria);
+            return RedirectToAction("Index");
             //}
             //catch (Exception ex)
             //{
@@ -104,36 +110,41 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
             {
                 //try
                 //{
-                    CategoriasRepository repos = new CategoriasRepository();
-                    Regex regex = new Regex(@"^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]+$");
-                    bool resultado = regex.IsMatch(vm.Nombre);
-
-                    if (repos.GetCategoriaByNombre(vm.Nombre).Id != vm.Id) //Permite editar con el mismo nombre siempre y cuando sea el id original
+                CategoriasRepository repos = new CategoriasRepository();
+                Regex regex = new Regex(@"^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{5,}$");
+                bool resultado = regex.IsMatch(vm.Nombre);
+                int x = vm.Nombre.Length;
+                if (x < 5)
                 {
-                        ModelState.AddModelError("", "Ya existe una categoria con este nombre");
-                        if (repos.GetCategoriaByNombre(vm.Nombre).Estatus == false)
-                        {
-                            ViewBag.Recuperacion = true;
-                            ViewBag.IdEncRec = repos.GetCategoriaByNombre(vm.Nombre).Id;
-                        }
-                        return View(vm);
+                    ModelState.AddModelError("", "El nombre es demasiado corto.");
+                    return View(vm);
+                }
+                if (repos.GetCategoriaByNombre(vm.Nombre).Id != vm.Id) //Permite editar con el mismo nombre siempre y cuando sea el id original
+                {
+                    ModelState.AddModelError("", "Ya existe una categoria con este nombre");
+                    if (repos.GetCategoriaByNombre(vm.Nombre).Estatus == false)
+                    {
+                        ViewBag.Recuperacion = true;
+                        ViewBag.IdEncRec = repos.GetCategoriaByNombre(vm.Nombre).Id;
                     }
+                    return View(vm);
+                }
 
-                    if (!resultado)
-                    {
-                        ModelState.AddModelError("", "El nombre de la categoria no puede contener caracteres especiales.");
-                        return View(vm);
-                    }
-                    Regex reg = new Regex(@"[0-9]| $");
-                    string exp = vm.Nombre.Substring(0, 1);
-                    bool res = reg.IsMatch(exp);
-                    if (res)
-                    {
-                        ModelState.AddModelError("", "El nombre de la categoria no puede iniciar con un numero.");
-                        return View(vm);
-                    }
-                    repos.Update(vm);
-                    return RedirectToAction("Index");
+                if (!resultado)
+                {
+                    ModelState.AddModelError("", "El nombre de la categoria no puede contener caracteres especiales.");
+                    return View(vm);
+                }
+                Regex reg = new Regex(@"[0-9]| $");
+                string exp = vm.Nombre.Substring(0, 1);
+                bool res = reg.IsMatch(exp);
+                if (res)
+                {
+                    ModelState.AddModelError("", "El nombre de la categoria no puede iniciar con un numero.");
+                    return View(vm);
+                }
+                repos.Update(vm);
+                return RedirectToAction("Index");
                 //}
                 //catch (Exception ex)
                 //{

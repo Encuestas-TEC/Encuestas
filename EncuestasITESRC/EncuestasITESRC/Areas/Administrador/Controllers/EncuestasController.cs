@@ -37,8 +37,15 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
             //try
             //{
             EncuestasRepository repos = new EncuestasRepository();
-            Regex regex = new Regex(@"^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 ]+$");
+            Regex regex = new Regex(@"^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 ]{5,}$");
             bool resultado = regex.IsMatch(encuestas.Titulo);
+            int x = encuestas.Titulo.Length;
+            if (x < 5)
+            {
+                ModelState.AddModelError("", "El titulo es demasiado corto.");
+                return View(encuestas);
+            }
+
             if (repos.GetEncuestaByNombre(encuestas.Titulo) != null)
             {
                 ModelState.AddModelError("", "Ya existe una encuesta con este nombre");
@@ -94,10 +101,16 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
             {
                 //try
                 //{
-                    EncuestasRepository repos = new EncuestasRepository();
-                    Regex regex = new Regex(@"^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]+$");
-                    bool resultado = regex.IsMatch(vm.Titulo);
-                    if (repos.GetEncuestaByNombre(vm.Titulo).Id != vm.Id) //Permite editar con el mismo nombre siempre y cuando sea el id original
+                EncuestasRepository repos = new EncuestasRepository();
+                Regex regex = new Regex(@"^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{5,}$");
+                bool resultado = regex.IsMatch(vm.Titulo);
+                int x = vm.Titulo.Length;
+                if (x < 5)
+                {
+                    ModelState.AddModelError("", "El titulo es demasiado corto.");
+                    return View(vm);
+                }
+                if (repos.GetEncuestaByNombre(vm.Titulo).Id != vm.Id) //Permite editar con el mismo nombre siempre y cuando sea el id original
                 {
                         ModelState.AddModelError("", "Ya existe una encuesta con este nombre");
                         if (repos.GetEncuestaByNombre(vm.Titulo).Estatus == false)
@@ -105,23 +118,23 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
                             ViewBag.Recuperacion = true;
                             ViewBag.IdEncRec = repos.GetEncuestaByNombre(vm.Titulo).Id;
                         }
-                        return View(vm);
-                    }
-                    if (!resultado)
-                    {
-                        ModelState.AddModelError("", "El nombre de la encuesta no puede contener caracteres especiales.");
-                        return View(vm);
-                    }
-                    Regex reg = new Regex(@"[0-9]| $");
-                    string exp = vm.Titulo.Substring(0, 1);
-                    bool res = reg.IsMatch(exp);
-                    if (res)
-                    {
-                        ModelState.AddModelError("", "El nombre de la encuesta no puede iniciar con un número.");
-                        return View(vm);
-                    }
-                    repos.Update(vm);
-                    return RedirectToAction("Index");
+                       return View(vm);
+                }
+                if (!resultado)
+                {
+                    ModelState.AddModelError("", "El nombre de la encuesta no puede contener caracteres especiales.");
+                    return View(vm);
+                }
+                Regex reg = new Regex(@"[0-9]| $");
+                string exp = vm.Titulo.Substring(0, 1);
+                bool res = reg.IsMatch(exp);
+                if (res)
+                {
+                    ModelState.AddModelError("", "El nombre de la encuesta no puede iniciar con un número.");
+                    return View(vm);
+                }
+                repos.Update(vm);
+                return RedirectToAction("Index");
                 //}
                 //catch (Exception ex)
                 //{

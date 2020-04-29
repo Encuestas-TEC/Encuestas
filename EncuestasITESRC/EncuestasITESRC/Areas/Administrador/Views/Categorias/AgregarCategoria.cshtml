@@ -14,7 +14,7 @@
         <form method="post" action="~/Administrador/Categorias/AgregarCategoria" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="exampleInputEmail1">Nombre</label>
-                <input asp-for="Nombre" name="Nombre" type="text" class="form-control" id="name" aria-describedby="name">
+                <input asp-for="Nombre" min="5" name="Nombre" type="text" class="form-control" id="name" aria-describedby="name">
                 <small id="name" class="form-text text-muted">Use solo letras </small>
             </div>
             <div class="form-group">

@@ -10,8 +10,9 @@ namespace EncuestasITESRC.Areas.Administrador.Models
     public class DAEncuestasViewModel
     {
         public int Id { get; set; }
+        
         [Required]
-        [MinLength(5, ErrorMessage = "El nombre es demasiado corto.")]
+        [MinLength(5)]
         [StringLength(45, ErrorMessage = "El campo excede el limite de caracteres, 45")]
         public string Titulo { get; set; }
 

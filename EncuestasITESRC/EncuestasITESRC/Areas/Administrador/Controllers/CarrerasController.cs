@@ -39,10 +39,16 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
             //ViewBag.Admin = 1;
             //try
             //{
-                CarrerasRepository repos = new CarrerasRepository();
-                Regex regex = new Regex(@"^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$");
-                bool resultado = regex.IsMatch(carrera.Nombre);
-                if (repos.GetCarreraByNombre(carrera.Nombre) != null)
+            CarrerasRepository repos = new CarrerasRepository();
+            Regex regex = new Regex(@"^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{5,}$");
+            bool resultado = regex.IsMatch(carrera.Nombre);
+            int x = carrera.Nombre.Length;
+            if (x < 5)
+            {
+                ModelState.AddModelError("", "El nombre es demasiado corto.");
+                return View(carrera);
+            }
+            if (repos.GetCarreraByNombre(carrera.Nombre) != null)
                 {
                     ModelState.AddModelError("", "Ya existe una carrera con este nombre");
                     if (repos.GetCarreraByNombre(carrera.Nombre).Estatus == false)
@@ -51,14 +57,14 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
                         ViewBag.IdEncRec = repos.GetCarreraByNombre(carrera.Nombre).Id;
                     }
                     return View(carrera);
-                }
-                if (!resultado)
-                {
-                    ModelState.AddModelError("", "El nombre de la carrera no puede contener numeros y/o caracteres especiales.");
-                    return View(carrera);
-                }
-                repos.Insert(carrera);
-                return RedirectToAction("Index");
+            }
+            if (!resultado)
+            {
+                ModelState.AddModelError("", "El nombre de la carrera no puede contener numeros y/o caracteres especiales.");
+                return View(carrera);
+            }
+            repos.Insert(carrera);
+            return RedirectToAction("Index");
             //}
             //catch (Exception ex)
             //{
@@ -96,9 +102,15 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
             {
                 //try
                 //{
-                    CarrerasRepository repos = new CarrerasRepository();
-                    Regex regex = new Regex(@"^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$");
-                    bool resultado = regex.IsMatch(vm.Nombre);
+                CarrerasRepository repos = new CarrerasRepository();
+                Regex regex = new Regex(@"^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{5,}$");
+                bool resultado = regex.IsMatch(vm.Nombre);
+                int x = vm.Nombre.Length;
+                if (x < 5)
+                {
+                    ModelState.AddModelError("", "El nombre es demasiado corto.");
+                    return View(vm);
+                }
                 //------------------Antiguo--------------------------------------------------------
                 //if (repos.GetCarreraByNombre(vm.Nombre) != null)
                 //{
