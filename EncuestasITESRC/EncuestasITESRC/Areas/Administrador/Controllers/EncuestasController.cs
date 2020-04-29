@@ -37,14 +37,14 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
             //try
             //{
             EncuestasRepository repos = new EncuestasRepository();
-            Regex regex = new Regex(@"^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 ]{5,}$");
+            Regex regex = new Regex(@"^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 ]{6,}$");
             bool resultado = regex.IsMatch(encuestas.Titulo);
-            int x = encuestas.Titulo.Length;
-            if (x < 5)
-            {
-                ModelState.AddModelError("", "El titulo es demasiado corto.");
-                return View(encuestas);
-            }
+            //int x = encuestas.Titulo.Length;
+            //if (x < 5)
+            //{
+            //    ModelState.AddModelError("", "El titulo es demasiado corto.");
+            //    return View(encuestas);
+            //}
 
             if (repos.GetEncuestaByNombre(encuestas.Titulo) != null)
             {
@@ -58,7 +58,7 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
             }
             if (!resultado)
             {
-                ModelState.AddModelError("", "El nombre de la encuesta no puede contener caracteres especiales.");
+                ModelState.AddModelError("", "El titulo debe contener 6 o más caracteres, no puede iniciar con un número y no puede contener caracteres especiales.");
                 return View(encuestas);
             }
             Regex reg = new Regex(@"[0-9]| $");
@@ -102,14 +102,14 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
                 //try
                 //{
                 EncuestasRepository repos = new EncuestasRepository();
-                Regex regex = new Regex(@"^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{5,}$");
+                Regex regex = new Regex(@"^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{6,}$");
                 bool resultado = regex.IsMatch(vm.Titulo);
-                int x = vm.Titulo.Length;
-                if (x < 5)
-                {
-                    ModelState.AddModelError("", "El titulo es demasiado corto.");
-                    return View(vm);
-                }
+                //int x = vm.Titulo.Length;
+                //if (x < 5)
+                //{
+                //    ModelState.AddModelError("", "El titulo es demasiado corto.");
+                //    return View(vm);
+                //}
                 if (repos.GetEncuestaByNombre(vm.Titulo).Id != vm.Id) //Permite editar con el mismo nombre siempre y cuando sea el id original
                 {
                         ModelState.AddModelError("", "Ya existe una encuesta con este nombre");
@@ -122,7 +122,7 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
                 }
                 if (!resultado)
                 {
-                    ModelState.AddModelError("", "El nombre de la encuesta no puede contener caracteres especiales.");
+                    ModelState.AddModelError("", "El titulo debe contener 6 o más caracteres, no puede iniciar con un número y no puede contener caracteres especiales.");
                     return View(vm);
                 }
                 Regex reg = new Regex(@"[0-9]| $");

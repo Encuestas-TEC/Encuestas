@@ -12,7 +12,7 @@ namespace EncuestasITESRC.Areas.Administrador.Models
         public int Id { get; set; }
         
         [Required]
-        [MinLength(5)]
+        //[MinLength(5, ErrorMessage = "El titulo es demasiado corto.")]
         [StringLength(45, ErrorMessage = "El campo excede el limite de caracteres, 45")]
         public string Titulo { get; set; }
 

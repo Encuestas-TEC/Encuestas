@@ -40,14 +40,14 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
             //try
             //{
             CategoriasRepository repos = new CategoriasRepository();
-            Regex regex = new Regex(@"^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 ]{5,}$");
+            Regex regex = new Regex(@"^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 ]{6,}$");
             bool resultado = regex.IsMatch(categoria.Nombre);
-            int x = categoria.Nombre.Length;
-            if (x < 5)
-            {
-                ModelState.AddModelError("", "El nombre es demasiado corto.");
-                return View(categoria);
-            }
+            //int x = categoria.Nombre.Length;
+            //if (x < 5)
+            //{
+            //    ModelState.AddModelError("", "El nombre es demasiado corto.");
+            //    return View(categoria);
+            //}
             if (repos.GetCategoriaByNombre(categoria.Nombre) != null)
                 {
                     ModelState.AddModelError("", "Ya existe una categoria con este nombre");
@@ -60,7 +60,7 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
             }
             if (!resultado)
             {
-                ModelState.AddModelError("", "El nombre de la categoria no puede contener caracteres especiales.");
+                ModelState.AddModelError("", "El nombre debe contener 6 o más caracteres, no puede iniciar con un número y no puede contener caracteres especiales.");
                 return View(categoria);
             }
             Regex reg = new Regex(@"[0-9]| $");
@@ -111,14 +111,14 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
                 //try
                 //{
                 CategoriasRepository repos = new CategoriasRepository();
-                Regex regex = new Regex(@"^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{5,}$");
+                Regex regex = new Regex(@"^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{6,}$");
                 bool resultado = regex.IsMatch(vm.Nombre);
-                int x = vm.Nombre.Length;
-                if (x < 5)
-                {
-                    ModelState.AddModelError("", "El nombre es demasiado corto.");
-                    return View(vm);
-                }
+                //int x = vm.Nombre.Length;
+                //if (x < 5)
+                //{
+                //    ModelState.AddModelError("", "El nombre es demasiado corto.");
+                //    return View(vm);
+                //}
                 if (repos.GetCategoriaByNombre(vm.Nombre).Id != vm.Id) //Permite editar con el mismo nombre siempre y cuando sea el id original
                 {
                     ModelState.AddModelError("", "Ya existe una categoria con este nombre");
@@ -132,7 +132,7 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
 
                 if (!resultado)
                 {
-                    ModelState.AddModelError("", "El nombre de la categoria no puede contener caracteres especiales.");
+                    ModelState.AddModelError("", "El nombre debe contener 6 o más caracteres, no puede iniciar con un número y no puede contener caracteres especiales.");
                     return View(vm);
                 }
                 Regex reg = new Regex(@"[0-9]| $");
