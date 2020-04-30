@@ -71,7 +71,7 @@ namespace AspNetCore
                 ");
             EndContext();
             BeginContext(411, 178, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "714df89f5d0b4864a13980fc8b5955f6", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "78d97e0257dd4e78ae95507df2fef013", async() => {
                 BeginContext(569, 16, true);
                 WriteLiteral("Agregar Encuesta");
                 EndContext();
@@ -158,7 +158,7 @@ namespace AspNetCore
                         ");
             EndContext();
             BeginContext(1860, 116, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cc787b94b08a42d5b836efe5bed601ff", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e04ded9feb4c4993a430e9f128f21a0d", async() => {
                 BeginContext(1945, 27, true);
                 WriteLiteral("<i class=\"fas fa-edit\"></i>");
                 EndContext();
@@ -199,7 +199,7 @@ WriteAttributeValue("", 2031, item.Id, 2031, 8, false);
             WriteLiteral(" class=\"list-item-action\" @*data-toggle=\"modal\" data-target=\"#deleteModal\"*@><i class=\"far fa-trash-alt\"></i></a>\r\n                        ");
             EndContext();
             BeginContext(2180, 164, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "24032e0b6a5c4169b0b8e44e005707c0", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d9aa8c776dc04a1798249adac2827ff1", async() => {
                 BeginContext(2313, 27, true);
                 WriteLiteral("<i class=\"fas fa-eye\"></i> ");
                 EndContext();
@@ -238,7 +238,7 @@ AddHtmlAttributeValue("", 2234, item.Id, 2234, 8, false);
             WriteLiteral("        </ul>\r\n\r\n        ");
             EndContext();
             BeginContext(2437, 152, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cd518567ac50414a8269ffa4a9c204f5", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2b9aee2fd2124b6d8c27d85b0fe2b153", async() => {
                 BeginContext(2509, 73, true);
                 WriteLiteral("\r\n            <input name=\"id\" id=\"idEncuesta\" type=\"hidden\" />\r\n        ");
                 EndContext();

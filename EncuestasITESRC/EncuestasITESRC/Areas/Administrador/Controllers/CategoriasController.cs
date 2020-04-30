@@ -119,6 +119,22 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
                 //    ModelState.AddModelError("", "El nombre es demasiado corto.");
                 //    return View(vm);
                 //}
+
+                if (!resultado)
+                {
+                    ModelState.AddModelError("", "El nombre debe contener 6 o más caracteres, no puede iniciar con un número y no puede contener caracteres especiales.");
+                    return View(vm);
+                }
+
+                Regex reg = new Regex(@"[0-9]| $");
+                string exp = vm.Nombre.Substring(0, 1);
+                bool res = reg.IsMatch(exp);
+                if (res)
+                {
+                    ModelState.AddModelError("", "El nombre de la categoria no puede iniciar con un numero.");
+                    return View(vm);
+                }
+
                 if (repos.GetCategoriaByNombre(vm.Nombre).Id != vm.Id) //Permite editar con el mismo nombre siempre y cuando sea el id original
                 {
                     ModelState.AddModelError("", "Ya existe una categoria con este nombre");
@@ -127,20 +143,6 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
                         ViewBag.Recuperacion = true;
                         ViewBag.IdEncRec = repos.GetCategoriaByNombre(vm.Nombre).Id;
                     }
-                    return View(vm);
-                }
-
-                if (!resultado)
-                {
-                    ModelState.AddModelError("", "El nombre debe contener 6 o más caracteres, no puede iniciar con un número y no puede contener caracteres especiales.");
-                    return View(vm);
-                }
-                Regex reg = new Regex(@"[0-9]| $");
-                string exp = vm.Nombre.Substring(0, 1);
-                bool res = reg.IsMatch(exp);
-                if (res)
-                {
-                    ModelState.AddModelError("", "El nombre de la categoria no puede iniciar con un numero.");
                     return View(vm);
                 }
                 repos.Update(vm);

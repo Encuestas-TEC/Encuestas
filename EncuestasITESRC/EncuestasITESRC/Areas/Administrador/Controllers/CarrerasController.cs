@@ -37,40 +37,47 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
         public IActionResult AgregarCarrera(DACarrerasViewModel carrera)
         {
             //ViewBag.Admin = 1;
-            //try
-            //{
-            CarrerasRepository repos = new CarrerasRepository();
-            Regex regex = new Regex(@"^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{6,}$");
-            bool resultado = regex.IsMatch(carrera.Nombre);
-            //int x = carrera.Nombre.Length;
-            //if (x < 5)
-            //{
-            //    ModelState.AddModelError("", "El nombre es demasiado corto.");
-            //    return View(carrera);
-            //}
-            if (repos.GetCarreraByNombre(carrera.Nombre) != null)
-                {
-                    ModelState.AddModelError("", "Ya existe una carrera con este nombre");
-                    if (repos.GetCarreraByNombre(carrera.Nombre).Estatus == false)
-                    {
-                        ViewBag.Recuperacion = true;
-                        ViewBag.IdEncRec = repos.GetCarreraByNombre(carrera.Nombre).Id;
-                    }
-                    return View(carrera);
-            }
-            if (!resultado)
+            try
             {
-                ModelState.AddModelError("", "El nombre debe contener 6 o más caracteres, no puede iniciar con un número y no puede contener caracteres especiales.");
+                CarrerasRepository repos = new CarrerasRepository();
+                Regex regex = new Regex(@"^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{6,}$");
+                bool resultado = regex.IsMatch(carrera.Nombre);
+                if (repos.GetCarreraByNombre(carrera.Nombre) != null)
+                    {
+                        ModelState.AddModelError("", "Ya existe una carrera con este nombre");
+                        if (repos.GetCarreraByNombre(carrera.Nombre).Estatus == false)
+                        {
+                            ViewBag.Recuperacion = true;
+                            ViewBag.IdEncRec = repos.GetCarreraByNombre(carrera.Nombre).Id;
+                        }
+                        return View(carrera);
+                }
+                if (!resultado)
+                {
+                    ModelState.AddModelError("", "El nombre debe contener 6 o más caracteres, no puede iniciar con un número y no puede contener caracteres especiales.");
+                    return View(carrera);
+                }
+
+                Regex reg = new Regex(@"[0-9]| $");
+                string exp = carrera.Nombre.Substring(0, 1);
+                bool res = reg.IsMatch(exp);
+                if (res)
+                {
+                    ModelState.AddModelError("", "El nombre de la categoria no puede iniciar con un numero.");
+                    return View(carrera);
+                }
+                if (string.IsNullOrWhiteSpace(carrera.Clave))
+                {
+                    return View(carrera);
+                }
+                repos.Insert(carrera);
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", ex.Message);
                 return View(carrera);
             }
-            repos.Insert(carrera);
-            return RedirectToAction("Index");
-            //}
-            //catch (Exception ex)
-            //{
-            //    ModelState.AddModelError("", ex.Message);
-            //    return View(carrera);
-            //}
 
         }
 
@@ -105,26 +112,22 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
                 CarrerasRepository repos = new CarrerasRepository();
                 Regex regex = new Regex(@"^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{6,}$");
                 bool resultado = regex.IsMatch(vm.Nombre);
-                //int x = vm.Nombre.Length;
-                //if (x < 5)
-                //{
-                //    ModelState.AddModelError("", "El nombre es demasiado corto.");
-                //    return View(vm);
-                //}
-                //------------------Antiguo--------------------------------------------------------
-                //if (repos.GetCarreraByNombre(vm.Nombre) != null)
-                //{
-                //    ModelState.AddModelError("", "Ya existe una carrera con este nombre");
-                //    if (repos.GetCarreraByNombre(vm.Nombre).Estatus == false)
-                //    {
-                //        ViewBag.Recuperacion = true;
-                //        ViewBag.IdEncRec = repos.GetCarreraByNombre(vm.Nombre).Id;
-                //    }
-                //    return View(vm);
-                //}
-                //------------------Antiguo--------------------------------------------------------
+                
+                if (!resultado)
+                {
+                     ModelState.AddModelError("", "El nombre debe contener 6 o más caracteres, no puede iniciar con un número y no puede contener caracteres especiales.");
+                     return View(vm);
+                }
 
-                //------------------Nuevo----------------------------------------------------------
+                Regex reg = new Regex(@"[0-9]| $");
+                string exp = vm.Nombre.Substring(0, 1);
+                bool res = reg.IsMatch(exp);
+                if (res)
+                {
+                    ModelState.AddModelError("", "El nombre de la categoria no puede iniciar con un numero.");
+                    return View(vm);
+                }
+
                 if (repos.GetCarreraByNombre(vm.Nombre).Id != vm.Id) //Permite editar con el mismo nombre siempre y cuando sea el id original
                 {
                     ModelState.AddModelError("", "Ya existe una carrera con este nombre");
@@ -134,11 +137,6 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
                         ViewBag.IdEncRec = repos.GetCarreraByNombre(vm.Nombre).Id;
                     }
                     return View(vm);
-                }
-                if (!resultado)
-                {
-                     ModelState.AddModelError("", "El nombre debe contener 6 o más caracteres, no puede iniciar con un número y no puede contener caracteres especiales.");
-                     return View(vm);
                 }
                 repos.Update(vm);
                 return RedirectToAction("Index");
