@@ -19,62 +19,81 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
         {
             Environment = env;
         }
+
+        //Administrador ------ Ir a encuestas GET-------------------------------------------------------------------------------
         [Route("Administrador/Encuestas")]
         public IActionResult Index()
         {
             EncuestasRepository repos = new EncuestasRepository();
             return View(repos.GetEncuestasActivas());
         }
+
+        //Administrador ------ Editar una encuesta GET--------------------------------------------------------------------------
         [Route("Administrador/AgregarEncuestas")]
         public IActionResult AgregarEncuesta()
         {
             //ViewBag.Admin= 1;
             return View();
         }
+
+        //Administrador ------ Agregar una encuesta POST-----------------------------------------------------------------------
         [HttpPost]
-        public IActionResult AgregarEncuesta(DAEncuestasViewModel encuestas)
+        public IActionResult AgregarEncuesta(DAEncuestasViewModel encuesta)
         {
-            //try
-            //{
-            EncuestasRepository repos = new EncuestasRepository();
-            Regex regex = new Regex(@"^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 ]{6,}$");
-            bool resultado = regex.IsMatch(encuestas.Titulo);
-            //int x = encuestas.Titulo.Length;
-            //if (x < 5)
-            //{
-            //    ModelState.AddModelError("", "El titulo es demasiado corto.");
-            //    return View(encuestas);
-            //}
-
-            if (repos.GetEncuestaByNombre(encuestas.Titulo) != null)
+            //ViewBad.Admin = 1;
+            if (ModelState.IsValid)
             {
-                ModelState.AddModelError("", "Ya existe una encuesta con este nombre");
-                if (repos.GetEncuestaByNombre(encuestas.Titulo).Estatus == false)
+                try
                 {
-                    ViewBag.Recuperacion = true;
-                    ViewBag.IdEncRec = repos.GetEncuestaByNombre(encuestas.Titulo).Id;
-                }
-                return View(encuestas);
-            }
-            if (!resultado)
-            {
-                ModelState.AddModelError("", "El titulo debe contener 6 o más caracteres, no puede iniciar con un número y no puede contener caracteres especiales.");
-                return View(encuestas);
-            }
-            Regex reg = new Regex(@"[0-9]| $");
-            string exp = encuestas.Titulo.Substring(0, 1);
-            bool res = reg.IsMatch(exp);
-            if (res)
-            {
-                ModelState.AddModelError("", "El nombre de la encuesta no puede iniciar con un número.");
-                return View(encuestas);
-            }
+                    EncuestasRepository RepositorioEncuestas = new EncuestasRepository();
 
-            repos.Insert(encuestas);
-            return RedirectToAction("Index", "Encuestas");
+                    var resultTitulo = RepositorioEncuestas.GetEncuestasByTitulo(encuesta.Titulo);
+
+                    Regex regexTitulo = new Regex(@"^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 ]{6,}$");
+                    bool resultadoRegexTitulo = regexTitulo.IsMatch(encuesta.Titulo);
+
+                    if (!resultadoRegexTitulo)
+                    {
+                        ModelState.AddModelError("", "El titulo debe contener 6 o más caracteres, no puede iniciar con un número y no puede contener caracteres especiales.");
+                        return View(encuesta);
+                    }
+                    Regex regexIniciaNum = new Regex(@"[0-9]| $");
+                    string expresion = encuesta.Titulo.Substring(0, 1);
+                    bool resultRegexIniciaNum = regexIniciaNum.IsMatch(expresion);
+                    if (resultRegexIniciaNum)
+                    {
+                        ModelState.AddModelError("", "El nombre de la encuesta no puede iniciar con un número.");
+                        return View(encuesta);
+                    }
+                    if (resultTitulo == null)
+                    {
+                        RepositorioEncuestas.Insert(encuesta);
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Ya existe una encuesta con este nombre.");
+                        if (RepositorioEncuestas.GetEncuestasByTitulo(encuesta.Titulo).Estatus == false)
+                        {
+                            ViewBag.Recuperacion = true;
+                            ViewBag.IdEncRec = RepositorioEncuestas.GetEncuestasByTitulo(encuesta.Titulo).Id;
+                        }
+                        return View(encuesta);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", ex.Message);
+                    return View(encuesta);
+                }
+            }
+            else
+            {
+                return View(encuesta);
+            }   
         }
     
-        //Administrador ------ Editar encuestas-----------------------------------------------------------------------
+        //Administrador ------ Editar una encuesta GET--------------------------------------------------------------------------
         [Route("Administrador/Encuestas/EditarEncuesta/{id}")]
         public IActionResult EditarEncuesta(int id)
         {
@@ -93,6 +112,8 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
                 return View(e);
             }
         }
+
+        //Administrador ------ Editar una encuesta POST------------------------------------------------------------------------
         [HttpPost]
         public IActionResult EditarEncuesta(DAEncuestasViewModel vm)
         {
@@ -101,35 +122,47 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
             {
                 try
                 {
-                    EncuestasRepository repos = new EncuestasRepository();
-                    Regex regex = new Regex(@"^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{6,}$");
-                    bool resultado = regex.IsMatch(vm.Titulo);
-                
-                    if (!resultado)
+                    EncuestasRepository RepositorioEncuestas = new EncuestasRepository();
+
+                    var resultTitulo = RepositorioEncuestas.GetEncuestasByTitulo(vm.Titulo);
+
+                    Regex regexTitulo = new Regex(@"^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 ]{6,}$");
+                    bool resultadoRegexTitulo = regexTitulo.IsMatch(vm.Titulo);
+
+                    if (!resultadoRegexTitulo)
                     {
                         ModelState.AddModelError("", "El titulo debe contener 6 o más caracteres, no puede iniciar con un número y no puede contener caracteres especiales.");
                         return View(vm);
                     }
-                    Regex reg = new Regex(@"[0-9]| $");
-                    string exp = vm.Titulo.Substring(0, 1);
-                    bool res = reg.IsMatch(exp);
-                    if (res)
+                    Regex regexIniciaNum = new Regex(@"[0-9]| $");
+                    string expresion = vm.Titulo.Substring(0, 1);
+                    bool resultRegexIniciaNum = regexIniciaNum.IsMatch(expresion);
+                    if (resultRegexIniciaNum)
                     {
                         ModelState.AddModelError("", "El nombre de la encuesta no puede iniciar con un número.");
                         return View(vm);
                     }
-                    if (repos.GetEncuestaByNombre(vm.Titulo).Id != vm.Id) //Permite editar con el mismo nombre siempre y cuando sea el id original
+                    if (resultTitulo == null)
                     {
-                        ModelState.AddModelError("", "Ya existe una encuesta con este nombre");
-                        if (repos.GetEncuestaByNombre(vm.Titulo).Estatus == false)
+                        RepositorioEncuestas.Update(vm);
+                        return RedirectToAction("Index");
+                    }
+                    else if (resultTitulo.Id == vm.Id)
+                    {
+                        resultTitulo.Titulo = vm.Titulo;
+                        RepositorioEncuestas.Update(vm);
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Ya existe una encuesta con este nombre.");
+                        if (RepositorioEncuestas.GetEncuestasByTitulo(vm.Titulo).Estatus == false)
                         {
                             ViewBag.Recuperacion = true;
-                            ViewBag.IdEncRec = repos.GetEncuestaByNombre(vm.Titulo).Id;
+                            ViewBag.IdEncRec = RepositorioEncuestas.GetEncuestasByTitulo(vm.Titulo).Id;
                         }
                         return View(vm);
                     }
-                    repos.Update(vm);
-                    return RedirectToAction("Index");
                 }
                 catch (Exception ex)
                 {
@@ -143,7 +176,7 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
             }
         }
        
-        //Administrador ------ Eliminar encuestas-----------------------------------------------------------------------
+        //Administrador ------ Eliminar una encuesta POST----------------------------------------------------------------------
         [HttpPost]
         public IActionResult EliminarEncuesta(int id)
         {
@@ -159,7 +192,8 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
             ViewBag.Mensaje = "La encuesta no existe o ya ha sido eliminada.";
             return RedirectToAction("Index");
         }
-        //Administrador ------ Recuperar encuestas-----------------------------------------------------------------------
+
+        //Administrador ------ Recuperar una encuesta POST---------------------------------------------------------------------
         [HttpPost]
         public IActionResult RecuperarEncuesta(int id)
         {

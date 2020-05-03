@@ -19,6 +19,8 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
         {
             Environment = env;
         }
+
+        //Administrador ---- Ir a carreras GET---------------------------------------------------------------------------------------
         [Route("Administrador/Carreras")]
         public IActionResult Index()
         {
@@ -26,62 +28,99 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
             return View(repos.GetCarrerasActivas());
         }
 
-        //Administrador ---- Agregar una Carrera
+        //Administrador ---- Agregar una carrera GET---------------------------------------------------------------------------------
         [Route("Administrador/AgregarCarrera")]
         public IActionResult AgregarCarrera()
         {
             //ViewBag.Admin = 1;
             return View();
         }
+
+        //Administrador ---- Agregar una carrera POST-------------------------------------------------------------------------------
         [HttpPost]
         public IActionResult AgregarCarrera(DACarrerasViewModel carrera)
         {
             //ViewBag.Admin = 1;
-            try
+            if (ModelState.IsValid)
             {
-                CarrerasRepository repos = new CarrerasRepository();
-                Regex regex = new Regex(@"^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{6,}$");
-                bool resultado = regex.IsMatch(carrera.Nombre);
-                if (repos.GetCarreraByNombre(carrera.Nombre) != null)
-                    {
-                        ModelState.AddModelError("", "Ya existe una carrera con este nombre");
-                        if (repos.GetCarreraByNombre(carrera.Nombre).Estatus == false)
-                        {
-                            ViewBag.Recuperacion = true;
-                            ViewBag.IdEncRec = repos.GetCarreraByNombre(carrera.Nombre).Id;
-                        }
-                        return View(carrera);
-                }
-                if (!resultado)
+                try
                 {
-                    ModelState.AddModelError("", "El nombre debe contener 6 o más caracteres, no puede iniciar con un número y no puede contener caracteres especiales.");
-                    return View(carrera);
-                }
+                    CarrerasRepository RepositorioCarreras = new CarrerasRepository();
 
-                Regex reg = new Regex(@"[0-9]| $");
-                string exp = carrera.Nombre.Substring(0, 1);
-                bool res = reg.IsMatch(exp);
-                if (res)
+                    var ResultNombre = RepositorioCarreras.GetCarreraByNombre(carrera.Nombre);
+                    var ResultClave = RepositorioCarreras.GetCarreraByClave(carrera.Clave);
+                    var ResultClaveCarrera = RepositorioCarreras.GetCarreraByClaveNombre(carrera.Clave, carrera.Nombre);
+
+                    Regex regClave = new Regex(@"^[a-zA-Z]+$");
+                    Regex regNombre = new Regex(@"^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s  ]{6,}$");
+                    bool resultClave = true;
+                    resultClave = regClave.IsMatch(carrera.Clave);
+                    bool resultNombre = true;
+                    resultNombre = regNombre.IsMatch(carrera.Nombre);
+
+                    if (!resultClave)
+                    {
+                        ModelState.AddModelError("", "La clave solo acepta 2 letras sin espacios ni caracteres especiales.");
+                        return View(carrera);
+                    }
+
+                    if (!resultNombre)
+                    {
+                        ModelState.AddModelError("", "El nombre debe contener 6 o más caracteres, no puede iniciar con un número y no puede contener caracteres especiales.");
+                        return View(carrera);
+                    }
+
+                    Regex regexNumInicio = new Regex(@"[0-9]| $");
+                    string expresion = carrera.Nombre.Substring(0, 1);
+                    bool resultadoRegexNum = regexNumInicio.IsMatch(expresion);
+
+                    if (resultadoRegexNum)
+                    {
+                        ModelState.AddModelError("", "El nombre de la carrera no puede iniciar con un numero.");
+                        return View(carrera);
+                    }
+
+                    if (ResultClaveCarrera == null)
+                    {
+                        if (ResultNombre != null)
+                        {
+                            ModelState.AddModelError("", "Ya existe una carrera con el mismo nombre.");
+                            if (RepositorioCarreras.GetCarreraByNombre(carrera.Nombre).Estatus == false)
+                            {
+                                ViewBag.Recuperacion = true;
+                                ViewBag.IdEncRec = RepositorioCarreras.GetCarreraByNombre(carrera.Nombre).Id;
+                            }
+                            return View(carrera);
+                        }
+                        if (ResultClave != null)
+                        {
+                            ModelState.AddModelError("", "Ya existe una carrera con la misma clave.");
+                            return View(carrera);
+                        }
+
+                        RepositorioCarreras.Insert(carrera);
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Ya existe esta carrera.");
+                        return View(carrera);
+                    }
+                }
+                catch (Exception ex)
                 {
-                    ModelState.AddModelError("", "El nombre de la categoria no puede iniciar con un numero.");
+                    ModelState.AddModelError("", ex.Message);
                     return View(carrera);
                 }
-                if (string.IsNullOrWhiteSpace(carrera.Clave))
-                {
-                    return View(carrera);
-                }
-                repos.Insert(carrera);
-                return RedirectToAction("Index");
             }
-            catch (Exception ex)
+            else
             {
-                ModelState.AddModelError("", ex.Message);
                 return View(carrera);
             }
 
         }
 
-        //Administrador ---- Editar una Carrera
+        //Administrador ---- Editar una carrera GET---------------------------------------------------------------------------------
         [Route("Administrador/Carreras/EditarCarrera/{id}")]
         public IActionResult EditarCarrera(int id)
         {
@@ -101,59 +140,120 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
             }
         }
 
+        //Administrador ---- Editar una carrera POST--------------------------------------------------------------------------------
         [HttpPost]
         public IActionResult EditarCarrera(DACarrerasViewModel vm)
         {
             //ViewBag.Admin = 1;
             if (ModelState.IsValid)
             {
-                //try
-                //{
-                CarrerasRepository repos = new CarrerasRepository();
-                Regex regex = new Regex(@"^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{6,}$");
-                bool resultado = regex.IsMatch(vm.Nombre);
-                
-                if (!resultado)
+                try
                 {
-                     ModelState.AddModelError("", "El nombre debe contener 6 o más caracteres, no puede iniciar con un número y no puede contener caracteres especiales.");
-                     return View(vm);
-                }
+                    CarrerasRepository carreraRepos = new CarrerasRepository();
 
-                Regex reg = new Regex(@"[0-9]| $");
-                string exp = vm.Nombre.Substring(0, 1);
-                bool res = reg.IsMatch(exp);
-                if (res)
-                {
-                    ModelState.AddModelError("", "El nombre de la categoria no puede iniciar con un numero.");
-                    return View(vm);
-                }
+                    var ResultNombre = carreraRepos.GetCarreraByNombre(vm.Nombre);
+                    var ResultClave = carreraRepos.GetCarreraByClave(vm.Clave);
+                    var ResultClaveCarrera = carreraRepos.GetCarreraByClaveNombre(vm.Clave, vm.Nombre);
 
-                if (repos.GetCarreraByNombre(vm.Nombre).Id != vm.Id) //Permite editar con el mismo nombre siempre y cuando sea el id original
-                {
-                    ModelState.AddModelError("", "Ya existe una carrera con este nombre");
-                    if (repos.GetCarreraByNombre(vm.Nombre).Estatus == false)
+                    Regex regClave = new Regex(@"^[a-zA-Z]+$");
+                    Regex regNombre = new Regex(@"^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s  ]{6,}$");
+                    bool resultClave = true;
+                    resultClave = regClave.IsMatch(vm.Clave);
+                    bool resultNombre = true;
+                    resultNombre = regNombre.IsMatch(vm.Nombre);
+
+                    if (!resultClave)
                     {
-                        ViewBag.Recuperacion = true;
-                        ViewBag.IdEncRec = repos.GetCarreraByNombre(vm.Nombre).Id;
+                        ModelState.AddModelError("", "La clave solo acepta 2 letras sin espacios ni caracteres especiales.");
+                        return View(vm);
                     }
+
+                    if (!resultNombre)
+                    {
+                        ModelState.AddModelError("", "El nombre debe contener 6 o más caracteres, no puede iniciar con un número y no puede contener caracteres especiales.");
+                        return View(vm);
+                    }
+
+                    Regex regexNumInicio = new Regex(@"[0-9]| $");
+                    string expresion = vm.Nombre.Substring(0, 1);
+                    bool resultadoRegexNum = regexNumInicio.IsMatch(expresion);
+
+                    if (resultadoRegexNum)
+                    {
+                        ModelState.AddModelError("", "El nombre de la carrera no puede iniciar con un numero.");
+                        return View(vm);
+                    }
+
+                    if (ResultClaveCarrera == null)
+                    {
+                        if (ResultNombre != null)
+                        {
+                            ModelState.AddModelError("", "Ya existe una carrera con el mismo nombre.");
+                            if (carreraRepos.GetCarreraByNombre(vm.Nombre).Estatus == false)
+                            {
+                                ViewBag.Recuperacion = true;
+                                ViewBag.IdEncRec = carreraRepos.GetCarreraByNombre(vm.Nombre).Id;
+                            }
+                            return View(vm);
+                        }
+                        if (ResultClave != null)
+                        {
+                            ModelState.AddModelError("", "Ya existe una carrera con la misma clave.");
+                            if (carreraRepos.GetCarreraByNombre(vm.Nombre).Estatus == false)
+                            {
+                                ViewBag.Recuperacion = true;
+                                ViewBag.IdEncRec = carreraRepos.GetCarreraByClave(vm.Clave).Id;
+                            }
+                            return View(vm);
+                        }
+
+                        carreraRepos.Update(vm);
+                        return RedirectToAction("Index");
+                    }
+                    else if (ResultClaveCarrera.Id == vm.Id)
+                    {
+
+                        if (ResultNombre != null)
+                        {
+                            if (vm.Id != ResultNombre.Id)
+                            {
+                                ModelState.AddModelError("", "Ya existe una carrera con el mismo nombre.");
+                                return View(vm);
+                            }
+                        }
+                        if (ResultClave != null)
+                        {
+                            if (vm.Id != ResultClave.Id)
+                            {
+                                ModelState.AddModelError("", "Ya existe una carrera con la misma clave.");
+                                return View(vm);
+                            }
+                        }
+
+                        ResultClaveCarrera.Clave = vm.Clave;
+                        ResultClaveCarrera.Nombre = vm.Nombre;
+                        carreraRepos.Update(ResultClaveCarrera);
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Ya existe esta carrera.");
+                        return View(vm);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", ex.Message);
                     return View(vm);
                 }
-                repos.Update(vm);
-                return RedirectToAction("Index");
-                //}
-                //catch (Exception ex)
-                //{
-                //    ModelState.AddModelError("", ex.Message);
-                //    return View(vm);
-                //}
             }
             else
             {
                 return View(vm);
             }
         }
-       
-        //Administrador ---- Eliminar una Carrera
+
+        //Administrador ---- Eliminar una carrera POST---------------------------------------------------------------------------------
         [HttpPost]
         public IActionResult EliminarCarrera(int id)
         {
@@ -170,6 +270,7 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
             return RedirectToAction("Index");
         }
 
+        //Administrador ---- Recuperar una carrera POST---------------------------------------------------------------------------------
         [HttpPost]
         public IActionResult RecuperarCarrera(int id)
         {

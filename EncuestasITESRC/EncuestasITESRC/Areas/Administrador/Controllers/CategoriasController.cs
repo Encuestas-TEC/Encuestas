@@ -19,13 +19,16 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
         {
             Environment = env;
         }
+
+        //Administrador ---- Ir a categorias GET---------------------------------------------------------------------------------------
         [Route("Administrador/Categorias")]
         public IActionResult Index()
         {
             CategoriasRepository repos = new CategoriasRepository();
             return View(repos.GetCategoriasActivas());
         }
-        //Administrador ---- Agregar una categorias---------------------------------------------------------------------------------
+
+        //Administrador ---- Agregar una categoria GET---------------------------------------------------------------------------------
         [Route("Administrador/AgregarCategoria")]
         public IActionResult AgregarCategoria()
         {
@@ -33,55 +36,65 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
             return View();
         }
 
+        //Administrador ---- Agregar una categoria POST--------------------------------------------------------------------------------
         [HttpPost]
         public IActionResult AgregarCategoria(DACategoriasViewModel categoria)
         {
             //ViewBag.Admin = 1;
-            //try
-            //{
-            CategoriasRepository repos = new CategoriasRepository();
-            Regex regex = new Regex(@"^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 ]{6,}$");
-            bool resultado = regex.IsMatch(categoria.Nombre);
-            //int x = categoria.Nombre.Length;
-            //if (x < 5)
-            //{
-            //    ModelState.AddModelError("", "El nombre es demasiado corto.");
-            //    return View(categoria);
-            //}
-            if (repos.GetCategoriaByNombre(categoria.Nombre) != null)
+            if (ModelState.IsValid)
+            {
+                try
                 {
-                    ModelState.AddModelError("", "Ya existe una categoria con este nombre");
-                    if (repos.GetCategoriaByNombre(categoria.Nombre).Estatus == false)
+                    CategoriasRepository RepositorioCategorias = new CategoriasRepository();
+
+                    var ResultNombre = RepositorioCategorias.GetCategoriaByNombre(categoria.Nombre);
+                    Regex regexNombre = new Regex(@"^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 ]{6,}$");
+                    bool resultNombreCat = regexNombre.IsMatch(categoria.Nombre);
+
+                    if (!resultNombreCat)
                     {
-                        ViewBag.Recuperacion = true;
-                        ViewBag.IdEncRec = repos.GetCategoriaByNombre(categoria.Nombre).Id;
+                        ModelState.AddModelError("", "El nombre debe contener 6 o más caracteres, no puede iniciar con un número y no puede contener caracteres especiales.");
+                        return View(categoria);
                     }
+
+                    Regex regexIniciaNum = new Regex(@"[0-9]| $");
+                    string expresion = categoria.Nombre.Substring(0, 1);
+                    bool resultRegexIniciaNum = regexIniciaNum.IsMatch(expresion);
+                    if (resultRegexIniciaNum)
+                    {
+                        ModelState.AddModelError("", "El nombre de la categoria no puede iniciar con un numero.");
+                        return View(categoria);
+                    }
+                    if (ResultNombre == null)
+                    {
+                        RepositorioCategorias.Insert(categoria);
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Ya existe una categoria con el mismo nombre.");
+                        if (RepositorioCategorias.GetCategoriaByNombre(categoria.Nombre).Estatus == false)
+                        {
+                            ViewBag.Recuperacion = true;
+                            ViewBag.IdEncRec = RepositorioCategorias.GetCategoriaByNombre(categoria.Nombre).Id;
+                        }
+                        return View(categoria);
+                    }
+                    
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", ex.Message);
                     return View(categoria);
+                }
             }
-            if (!resultado)
+            else
             {
-                ModelState.AddModelError("", "El nombre debe contener 6 o más caracteres, no puede iniciar con un número y no puede contener caracteres especiales.");
                 return View(categoria);
             }
-            Regex reg = new Regex(@"[0-9]| $");
-            string exp = categoria.Nombre.Substring(0, 1);
-            bool res = reg.IsMatch(exp);
-            if (res)
-            {
-                ModelState.AddModelError("", "El nombre de la categoria no puede iniciar con un numero.");
-                return View(categoria);
-            }
-            repos.Insert(categoria);
-            return RedirectToAction("Index");
-            //}
-            //catch (Exception ex)
-            //{
-            //    ModelState.AddModelError("", ex.Message);
-            //    return View(categoria);
-            //}
         }
 
-        //Administrador ---- Editar una categoria----------------------------------------------------------------------------------
+        //Administrador ---- Editar una categoria GET-----------------------------------------------------------------------------------
         [Route("Administrador/Categorias/EditarCategoria/{id}")]
         public IActionResult EditarCategoria(int id)
         {
@@ -101,66 +114,72 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
             }
         }
 
+        //Administrador ---- Editar una categoria POST----------------------------------------------------------------------------------
         [HttpPost]
         public IActionResult EditarCategoria(DACategoriasViewModel vm)
         {
             //ViewBag.Admin = 1;
-
             if (ModelState.IsValid)
             {
-                //try
-                //{
-                CategoriasRepository repos = new CategoriasRepository();
-                Regex regex = new Regex(@"^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{6,}$");
-                bool resultado = regex.IsMatch(vm.Nombre);
-                //int x = vm.Nombre.Length;
-                //if (x < 5)
-                //{
-                //    ModelState.AddModelError("", "El nombre es demasiado corto.");
-                //    return View(vm);
-                //}
-
-                if (!resultado)
+                try
                 {
-                    ModelState.AddModelError("", "El nombre debe contener 6 o más caracteres, no puede iniciar con un número y no puede contener caracteres especiales.");
-                    return View(vm);
-                }
+                    CategoriasRepository RepositorioCategorias = new CategoriasRepository();
 
-                Regex reg = new Regex(@"[0-9]| $");
-                string exp = vm.Nombre.Substring(0, 1);
-                bool res = reg.IsMatch(exp);
-                if (res)
-                {
-                    ModelState.AddModelError("", "El nombre de la categoria no puede iniciar con un numero.");
-                    return View(vm);
-                }
+                    var ResultNombre = RepositorioCategorias.GetCategoriaByNombre(vm.Nombre);
 
-                if (repos.GetCategoriaByNombre(vm.Nombre).Id != vm.Id) //Permite editar con el mismo nombre siempre y cuando sea el id original
-                {
-                    ModelState.AddModelError("", "Ya existe una categoria con este nombre");
-                    if (repos.GetCategoriaByNombre(vm.Nombre).Estatus == false)
+                    Regex regexNombre = new Regex(@"^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 ]{6,}$");
+                    bool resultNombreCat = regexNombre.IsMatch(vm.Nombre);
+
+                    if (!resultNombreCat)
                     {
-                        ViewBag.Recuperacion = true;
-                        ViewBag.IdEncRec = repos.GetCategoriaByNombre(vm.Nombre).Id;
+                        ModelState.AddModelError("", "El nombre debe contener 6 o más caracteres, no puede iniciar con un número y no puede contener caracteres especiales.");
+                        return View(vm);
                     }
+
+                    Regex regexIniciaNumero = new Regex(@"[0-9]| $");
+                    string expresion = vm.Nombre.Substring(0, 1);
+                    bool resultIniciaNumero = regexIniciaNumero.IsMatch(expresion);
+                    if (resultIniciaNumero)
+                    {
+                        ModelState.AddModelError("", "El nombre de la categoria no puede iniciar con un numero.");
+                        return View(vm);
+                    }
+                    if (ResultNombre == null)
+                    {
+                        RepositorioCategorias.Update(vm);
+                        return RedirectToAction("Index");
+                    }
+                    else if (ResultNombre.Id == vm.Id)
+                    {
+                        ResultNombre.Nombre = vm.Nombre;
+                        RepositorioCategorias.Update(ResultNombre);
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Ya existe una categoria con el mismo nombre.");
+                        if (RepositorioCategorias.GetCategoriaByNombre(vm.Nombre).Estatus == false)
+                        {
+                            ViewBag.Recuperacion = true;
+                            ViewBag.IdEncRec = RepositorioCategorias.GetCategoriaByNombre(vm.Nombre).Id;
+                        }
+                        return View(vm);
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", ex.Message);
                     return View(vm);
                 }
-                repos.Update(vm);
-                return RedirectToAction("Index");
-                //}
-                //catch (Exception ex)
-                //{
-                //    ModelState.AddModelError("", ex.Message);
-                //    return View(vm);
-                //}
             }
             else
             {
                 return View(vm);
             }
         }
-        //Administrador ---- Eliminar una categoria---------------------------------------------------------------------------------
-       
+
+        //Administrador ---- Eliminar una categoria POST-------------------------------------------------------------------------------
         [HttpPost]
         public IActionResult EliminarCategoria(int id)
         {
@@ -188,7 +207,7 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
             return RedirectToAction("Index");
         }
 
-        //Administrador ------ Recuperar categoria ---------------------------------------------------------------------------------
+        //Administrador ------ Recuperar una categoria POST--------------------------------------------------------------------------------
         [HttpPost]
         public IActionResult RecuperarCategoria(int id)
         {

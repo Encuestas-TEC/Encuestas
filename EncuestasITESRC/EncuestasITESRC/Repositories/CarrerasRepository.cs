@@ -27,7 +27,16 @@ namespace EncuestasITESRC.Repositories
                     Clave = x.Clave
                 }).FirstOrDefault();
         }
+        public Carrera GetCarreraByClave(string clave)
+        {
+            return GetAll().FirstOrDefault(x => x.Clave == clave);
 
+        }
+        public Carrera GetCarreraByClaveNombre(string clave, string nombre)
+        {
+            return GetAll().FirstOrDefault(x => x.Clave == clave && x.Nombre == nombre);
+
+        }
         public IEnumerable<Carrera> GetCarrerasActivas()
         {
             return GetAll().Where(x => x.Estatus == true).OrderBy(x => x.Nombre);
@@ -47,13 +56,12 @@ namespace EncuestasITESRC.Repositories
         }
         public void Update(DACarrerasViewModel vm)
         {
-            var a = Context.Carrera.FirstOrDefault(x => x.Id == vm.Id);
-            if (a != null)
+            var carrera = GetById(vm.Id);
+            if (carrera != null)
             {
-                a.Id = vm.Id;
-                a.Nombre = vm.Nombre;
-                a.Clave = vm.Clave;
-                Update(a);
+                carrera.Clave = vm.Clave;
+                carrera.Nombre = vm.Nombre;
+                Update(carrera);
             }
         } 
    
