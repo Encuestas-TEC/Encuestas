@@ -36,7 +36,13 @@
                     <div class="list-item-float-l">
                         <h5 class="name">@item.Titulo</h5>
                         <p>
-                            <span class="cat item-cat">Categoría: @item.IdCategoriaNavigation.Nombre</span>  <span class="item-status">Estado: @item.Estado</span>
+                            <span class="cat item-cat">Categoría: @item.IdCategoriaNavigation.Nombre</span>
+                            @if (item.Estado == true)
+                            {
+                                <span class="item-status">Estado: Activada</span>
+                            }
+                            else { <span class="item-status">Estado: Desactivada</span> }
+                          
                         </p>
 
                     </div>
