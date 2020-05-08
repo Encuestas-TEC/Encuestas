@@ -2,12 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\EncuestasITESRC",
-    "\\EncuestasITESRC\\EncuestasITESRC",
-    "\\EncuestasITESRC\\EncuestasITESRC\\Areas",
-    "\\EncuestasITESRC\\EncuestasITESRC\\Areas\\Administrador",
-    "\\EncuestasITESRC\\EncuestasITESRC\\Areas\\Administrador\\Controllers",
-    "\\EncuestasITESRC\\EncuestasITESRC\\Models"
+    "\\EncuestasITESRC\\EncuestasITESRC"
   ],
-  "SelectedNode": "\\EncuestasITESRC\\EncuestasITESRC\\Areas\\Administrador\\Controllers\\CategoriasController.cs",
+  "SelectedNode": "\\EncuestasITESRC\\EncuestasITESRC.sln",
   "PreviewInSolutionExplorer": false
 }

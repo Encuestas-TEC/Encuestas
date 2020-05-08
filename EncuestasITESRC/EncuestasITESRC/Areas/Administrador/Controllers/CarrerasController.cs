@@ -66,7 +66,7 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
 
                     if (!resultNombre)
                     {
-                        ModelState.AddModelError("", "El nombre debe contener 6 o más caracteres, no puede iniciar con un número y no puede contener caracteres especiales.");
+                        ModelState.AddModelError("", "El nombre debe contener 6 o más caracteres, no puede contener números y/o caracteres especiales.");
                         return View(carrera);
                     }
 
@@ -170,7 +170,7 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
 
                     if (!resultNombre)
                     {
-                        ModelState.AddModelError("", "El nombre debe contener 6 o más caracteres, no puede iniciar con un número y no puede contener caracteres especiales.");
+                        ModelState.AddModelError("", "El nombre debe contener 6 o más caracteres, no puede contener números y/o caracteres especiales.");
                         return View(vm);
                     }
 

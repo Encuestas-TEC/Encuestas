@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
   <parameter name="IIS Web Application Name" description="" value="encuestas.itesrc.net" tags="IisApp">
-    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\Romar\\OneDrive\\Escritorio\\Encuestas\\EncuestasITESRC\\EncuestasITESRC\\obj\\Release\\netcoreapp2\.1\\PubTmp\\Out\\$" />
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\irisr\\source\\repos\\Encuestas-TEC\\Encuestas\\EncuestasITESRC\\EncuestasITESRC\\obj\\Release\\netcoreapp2\.1\\PubTmp\\Out\\$" />
   </parameter>
 </parameters>
