@@ -147,8 +147,8 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
             //ViewBag.Admin = 1;
             if (ModelState.IsValid)
             {
-                //try
-                //{
+                try
+                {
                     CarrerasRepository carreraRepos = new CarrerasRepository();
 
                     var ResultNombre = carreraRepos.GetCarreraByNombre(vm.Nombre);
@@ -196,16 +196,16 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
                             }
                             return View(vm);
                         }
-                        if (ResultClave != null)
-                        {
-                            ModelState.AddModelError("", "Ya existe una carrera con la misma clave.");
-                            if (carreraRepos.GetCarreraByNombre(vm.Nombre).Estatus == false)
-                            {
-                                ViewBag.Recuperacion = true;
-                                ViewBag.IdEncRec = carreraRepos.GetCarreraByClave(vm.Clave).Id;
-                            }
-                            return View(vm);
-                        }
+                        //if (ResultClave != null)
+                        //{
+                        //    ModelState.AddModelError("", "Ya existe una carrera con la misma clave.");
+                        //    if (carreraRepos.GetCarreraByNombre(vm.Nombre).Estatus == false)
+                        //    {
+                        //        ViewBag.Recuperacion = true;
+                        //        ViewBag.IdEncRec = carreraRepos.GetCarreraByClave(vm.Clave).Id;
+                        //    }
+                        //    return View(vm);
+                        //}
 
                         carreraRepos.Update(vm);
                         return RedirectToAction("Index");
@@ -225,7 +225,7 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
                         {
                             if (vm.Id != ResultClave.Id)
                             {
-                                ModelState.AddModelError("", "Ya existe una carrera con la misma clave. tttt");
+                                ModelState.AddModelError("", "Ya existe una carrera con la misma clave. 2");
                                 return View(vm);
                             }
                         }
@@ -240,12 +240,12 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
                         ModelState.AddModelError("", "Ya existe esta carrera.");
                         return View(vm);
                     }
-                //}
-                //catch (Exception ex)
-                //{
-                //    ModelState.AddModelError("", ex.Message);
-                //    return View(vm);
-                //}
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", ex.Message);
+                    return View(vm);
+                }
             }
             else
             {
