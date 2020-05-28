@@ -119,7 +119,7 @@ namespace EncuestasITESRC.Models
 
                 entity.Property(e => e.Nombre)
                     .IsRequired()
-                    .HasColumnType("varchar(45)");
+                    .HasColumnType("varchar(100)");
             });
 
             modelBuilder.Entity<Categoria>(entity =>

@@ -107,3 +107,4 @@ C:\Users\irisr\source\repos\Encuestas-TEC\Encuestas\EncuestasITESRC\EncuestasITE
 C:\Users\irisr\source\repos\Encuestas-TEC\Encuestas\EncuestasITESRC\EncuestasITESRC\obj\Release\netcoreapp2.1\EncuestasITESRC.pdb
 C:\Users\irisr\source\repos\Encuestas-TEC\Encuestas\EncuestasITESRC\EncuestasITESRC\obj\Release\netcoreapp2.1\EncuestasITESRC.genruntimeconfig.cache
 C:\Users\irisr\source\repos\Encuestas-TEC\Encuestas\EncuestasITESRC\EncuestasITESRC\obj\Release\netcoreapp2.1\EncuestasITESRC.csproj.CopyComplete
+C:\Users\Romar\OneDrive\Escritorio\Encuestas\EncuestasITESRC\EncuestasITESRC\obj\Release\netcoreapp2.1\Razor\Areas\Administrador\Views\Preguntas\Index.cshtml.g.cs

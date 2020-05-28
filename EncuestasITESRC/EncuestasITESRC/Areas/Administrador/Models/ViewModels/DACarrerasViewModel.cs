@@ -10,9 +10,9 @@ namespace EncuestasITESRC.Areas.Administrador.Models
     {
         public int Id { get; set; }
         
-        [Required]
+        [Required(ErrorMessage = "El nombre de la carrera es un campo requerido, por lo que no puede estar vacio.")]
         //[MinLength(5, ErrorMessage = "El nombre es demasiado corto.")]
-        [StringLength(45, ErrorMessage = "El campo excede el limite de caracteres, 45")]
+        [StringLength(50, ErrorMessage = "El campo excede el limite de caracteres, 50")]
         public string Nombre { get; set; }
 
         [Required(ErrorMessage = "La clave de la carrera es un campo requerido, por lo que no puede estar vacío.")]

@@ -9,4 +9,4 @@ itesrcne_encuest
 programadores1ncuest
 
 
-Scaffold-DbContext "server=204.93.216.11; user id=itesrcne_encuest; password=programadores1ncuest; database=itesrcne_encuest;" "Pomelo.EntityFrameworkCore.MySql" -o Models -f
+Scaffold-DbContext "server=204.93.216.11; user id=itesrcne_encuest; password=programadores1ncuest; database=itesrcne_encuestas;" "Pomelo.EntityFrameworkCore.MySql" -o Models -f
