@@ -147,8 +147,8 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
             //ViewBag.Admin = 1;
             if (ModelState.IsValid)
             {
-                try
-                {
+                //try
+                //{
                     CarrerasRepository carreraRepos = new CarrerasRepository();
 
                     var ResultNombre = carreraRepos.GetCarreraByNombre(vm.Nombre);
@@ -240,12 +240,12 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
                         ModelState.AddModelError("", "Ya existe esta carrera.");
                         return View(vm);
                     }
-                }
-                catch (Exception ex)
-                {
-                    ModelState.AddModelError("", ex.Message);
-                    return View(vm);
-                }
+                //}
+                //catch (Exception ex)
+                //{
+                //    ModelState.AddModelError("", ex.Message);
+                //    return View(vm);
+                //}
             }
             else
             {
