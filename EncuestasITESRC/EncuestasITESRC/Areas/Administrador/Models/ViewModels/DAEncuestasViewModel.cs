@@ -11,8 +11,7 @@ namespace EncuestasITESRC.Areas.Administrador.Models
     {
         public int Id { get; set; }
         
-        [Required]
-        //[MinLength(5, ErrorMessage = "El titulo es demasiado corto.")]
+        [Required(ErrorMessage = "El titulo de la encuesta es un campo requerido, por lo que no puede estar vacio.")]
         [StringLength(45, ErrorMessage = "El campo excede el limite de caracteres, 45")]
         public string Titulo { get; set; }
 

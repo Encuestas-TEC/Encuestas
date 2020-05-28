@@ -43,8 +43,8 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
             //ViewBad.Admin = 1;
             if (ModelState.IsValid)
             {
-                try
-                {
+                //try
+                //{
                     EncuestasRepository RepositorioEncuestas = new EncuestasRepository();
 
                     var resultTitulo = RepositorioEncuestas.GetEncuestasByTitulo(encuesta.Titulo);
@@ -62,7 +62,7 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
                     bool resultRegexIniciaNum = regexIniciaNum.IsMatch(expresion);
                     if (resultRegexIniciaNum)
                     {
-                        ModelState.AddModelError("", "El nombre de la encuesta no puede iniciar con un número.");
+                        ModelState.AddModelError("", "El titulo de la encuesta no puede iniciar con un número.");
                         return View(encuesta);
                     }
                     if (resultTitulo == null)
@@ -80,12 +80,12 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
                         }
                         return View(encuesta);
                     }
-                }
-                catch (Exception ex)
-                {
-                    ModelState.AddModelError("", ex.Message);
-                    return View(encuesta);
-                }
+                //}
+                //catch (Exception ex)
+                //{
+                //    ModelState.AddModelError("", ex.Message);
+                //    return View(encuesta);
+                //}
             }
             else
             {
@@ -120,8 +120,8 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
             //ViewBag.Admin = 1;
             if (ModelState.IsValid)
             {
-                try
-                {
+                //try
+                //{
                     EncuestasRepository RepositorioEncuestas = new EncuestasRepository();
 
                     var resultTitulo = RepositorioEncuestas.GetEncuestasByTitulo(vm.Titulo);
@@ -139,7 +139,7 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
                     bool resultRegexIniciaNum = regexIniciaNum.IsMatch(expresion);
                     if (resultRegexIniciaNum)
                     {
-                        ModelState.AddModelError("", "El nombre de la encuesta no puede iniciar con un número.");
+                        ModelState.AddModelError("", "El titulo de la encuesta no puede iniciar con un número.");
                         return View(vm);
                     }
                     if (resultTitulo == null)
@@ -163,12 +163,12 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
                         }
                         return View(vm);
                     }
-                }
-                catch (Exception ex)
-                {
-                    ModelState.AddModelError("", ex.Message);
-                    return View(vm);
-                }
+                //}
+                //catch (Exception ex)
+                //{
+                //    ModelState.AddModelError("", ex.Message);
+                //    return View(vm);
+                //}
             }
             else
             {
