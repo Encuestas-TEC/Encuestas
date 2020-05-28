@@ -43,8 +43,8 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
             //ViewBag.Admin = 1;
             if (ModelState.IsValid)
             {
-                try
-                {
+                //try
+                //{
                     CategoriasRepository RepositorioCategorias = new CategoriasRepository();
 
                     var ResultNombre = RepositorioCategorias.GetCategoriaByNombre(categoria.Nombre);
@@ -81,12 +81,12 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
                         return View(categoria);
                     }
                     
-                }
-                catch (Exception ex)
-                {
-                    ModelState.AddModelError("", ex.Message);
-                    return View(categoria);
-                }
+                //}
+                //catch (Exception ex)
+                //{
+                //    ModelState.AddModelError("", ex.Message);
+                //    return View(categoria);
+                //}
             }
             else
             {
