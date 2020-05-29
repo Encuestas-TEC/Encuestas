@@ -15,5 +15,11 @@ namespace EncuestasITESRC.Services
             var list = repos.GetCategoriasActivas();
             return list;
         }
+        public IEnumerable<Tiporespuesta> GetTiposRespuesta()
+        {
+            TipoRespuestaRepository repos = new TipoRespuestaRepository();
+            var list = repos.GetTiposRespuesta();
+            return list;
+        }
     }
 }
