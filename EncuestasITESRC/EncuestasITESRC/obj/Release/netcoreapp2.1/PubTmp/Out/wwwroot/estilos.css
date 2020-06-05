@@ -508,6 +508,24 @@ margin-bottom: 0;
  height: 100%;
   
 }
+.name{
+  width: auto;
+}
+.list-item-float-l  p > span
+  {
+   margin: 0;
+  margin-left: 0px;
+  }
+  .edo{
+    width: 0px;
+    visibility: collapse;
+  }
+
+  .card-question
+{
+  margin-left: 5em; margin-right: 5em; margin-bottom: 10px;
+  padding: 5px 20px;
+}
 }
 @media (max-width: 756px) { 
 
@@ -518,14 +536,52 @@ margin-bottom: 0;
 float: right;
 top: auto;
  height: 100%;
+ width: 70%;
+ margin-left: 30%;
   
 }
 .list-item-action
 {
   font-size: 35px;
   margin:  5px;
+  margin-right: 30px;
   color: #333;
   position: relative;
+}
+.list-item-float-l img {
+  float: left;
+  margin-left: 20px;
+  width: 14%;
+}
+.edo
+{
+  width: 80%;
+}
+.list-item-float-l  .name{
+  
+  width: 100%;
+ 
+float: left;
+   font-size: 17px;
+  
+  }
+  .list-item-float-l  p > span
+  {
+    float: left;
+   background-color: #1E8449;
+  margin-left: 40px;
+  }
+
+  .list-item-float-l  div{
+    width: 100%;
+    background-color: pink;
+  }
+
+.card-question{
+  padding: 0 5px;
+  margin-left: 2px;
+  margin-right: 2px;
+  background-color: #B03A2E;
 }
   }
 .item-status{
@@ -537,7 +593,10 @@ top: auto;
   margin:  2px;
   color: #333;
   position: relative;
+ 
+
 }
+
 /* .list-group-item:hover{
   -webkit-box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.75);
   -moz-box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.75);
@@ -545,10 +604,7 @@ top: auto;
 } */
 
 /* pregunta */
-.card-question
-{
-  margin-left: 5em; margin-right: 5em; margin-bottom: 10px;
-}
+
 /* input pregunta  */
       
 .group {
@@ -561,18 +617,21 @@ top: auto;
   background: none;
   color: #333;
   font-size: 18px;
-  padding: 10px 10px 10px 5px;
+ padding-bottom: 0;
   display: block;
  width: 100%;
   border: none;
   border-radius: 0;
   border-bottom: 1px solid #c6c6c6;
+  margin-top: 20px;
 }
+
 .intpregunta:focus{
   outline: none;
 }
-.intpregunta:focus ~ .lblpregunta , .intpregunta:valid ~ .lblpregunta {
-  top: -12px;
+.intpregunta:focus ~ .lblpregunta 
+, .intpregunta:valid ~ .lblpregunta {
+  top: 0px;
   font-size: 12px;
   color: #2196F3;
 }
@@ -586,8 +645,8 @@ top: auto;
   font-weight: normal;
   position: absolute;
   pointer-events: none;
-  left: 5px;
-  top: 10px;
+  left: 20px;
+  top: 15px;
   -webkit-transition: 300ms ease all;
   transition: 300ms ease all;
 }
@@ -658,6 +717,7 @@ top: auto;
   -moz-transition: background .15s ease-in-out;
   transition: background .15s ease-in-out;
 }
+
 .range-slider__range::-moz-range-thumb:hover {
   background: #1abc9c;
 }
@@ -692,7 +752,7 @@ top: auto;
   content: '';
 }
 
-.close
+.closeQ
 {
   position: absolute;
   top: -5px;
@@ -704,3 +764,114 @@ top: auto;
 .addicon:hover {
 
 } */
+.radioop{
+  float: left;
+  margin: 0;
+  padding: 0;
+  color: #E4DDDC; width: 2%;
+}
+.intrespuesta {
+  background: none;
+  color: #333;
+  font-size: 16px;
+ padding-left: 5px;
+  display: block;
+ width: 100%;
+  border: none;
+  border-radius: 0;
+
+}
+.intrespuesta:focus{
+  border-bottom: 1px solid #0062cc;
+}
+.intrespuesta{
+  border-bottom: 1px solid #E4DDDC;
+}
+ul{
+  list-style: none;
+}
+.respuestasul{
+  margin-top: 20px;
+
+}
+.respuestasul li{
+display: flex;
+margin-top: 10px;
+
+}
+
+.respuestasul li:hover  {
+
+
+visibility: visible;
+
+}
+.ansContainer
+{
+  margin-top: 20px; margin-left: 2em; margin-right: 1em;
+}
+.OpcionTextArea{
+  margin-top: 20px; margin-left: 2em; margin-right: 2em;
+}
+/* switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 20px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 4px;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 1px;
+  bottom: 0px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
