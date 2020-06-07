@@ -82,7 +82,7 @@ function addTextArea()
     num++;
     i = num;
   
-        var myPanel = $('<div class="card card-question" style="margin-left: 5em; margin-right: 5em; margin-top: 1em;"> <div class="card-header" ><div class="group"> <input type="text" required="required" class="intpregunta"/><span class="highlight"></span><span class="bar"></span> <label class="lblpregunta">Pregunta '+i+'</label></div> </div> <div class="card-body"> <section class="OpcionTextArea"><div class="form-group"><textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>  </div></div></div>');
+        var myPanel = $('<div class="card card-question" style="margin-left: 5em; margin-right: 5em; margin-top: 1em;"> <div class="card-header" ><div class="group"> <input type="text" asp-for required="required" class="intpregunta"/><span class="highlight"></span><span class="bar"></span> <label class="lblpregunta">Pregunta '+i+'</label></div> </div> <div class="card-body"> <section class="OpcionTextArea"><div class="form-group"><textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>  </div></div></div>');
        
         myPanel.appendTo('#contentPanel');
 }
