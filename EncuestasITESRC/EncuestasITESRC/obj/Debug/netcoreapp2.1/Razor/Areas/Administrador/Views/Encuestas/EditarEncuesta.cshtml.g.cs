@@ -73,12 +73,12 @@ namespace AspNetCore
             WriteLiteral("\r\n<div class=\"card mb-3\" id=\"card-admin\">\r\n    <div class=\"card-header\">\r\n        <h3> <i class=\"fas fa-plus\"></i> <span>Editar Encuesta</span></h3>\r\n    </div>\r\n    <div class=\"card-body\">\r\n        ");
             EndContext();
             BeginContext(401, 1376, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "98573edbcc994f2b9aca22d51025ca2f", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "89a01b60080041fb8a350f9a3660ae37", async() => {
                 BeginContext(471, 14, true);
                 WriteLiteral("\r\n            ");
                 EndContext();
                 BeginContext(485, 35, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "facaf47f2e554bb39d40c3810c3d47a6", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "4357e4f3575e4373bd0c2a750d8bec70", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -103,7 +103,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 WriteLiteral("\r\n            ");
                 EndContext();
                 BeginContext(534, 57, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "471dc820113b4463b216a25ec68787a2", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "1f8d84e029244454b965d66d8f1b44cd", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -130,7 +130,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 WriteLiteral("\r\n            <div class=\"form-group\">\r\n                <label for=\"exampleInputEmail1\">Nombre</label>\r\n                ");
                 EndContext();
                 BeginContext(711, 113, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "575178c87e7345c09ed7720a4adbaabb", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "c4326270e7864b8dbaa7a68b519e5de2", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -161,7 +161,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 WriteLiteral("\r\n                <!-- <small id=\"name\" class=\"form-text text-muted\">use solo letras </small> -->\r\n            </div>\r\n\r\n            <div class=\"form-group \">\r\n                <label for=\"cate\">Categoria</label>\r\n                ");
                 EndContext();
                 BeginContext(1053, 196, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4846296591b445fbab978f12c0e9403f", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ad4c5e33ce4244aab131149963eb0592", async() => {
                     BeginContext(1222, 18, true);
                     WriteLiteral("\r\n                ");
                     EndContext();
@@ -195,7 +195,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper.Items = (new SelectList(ms
                 WriteLiteral("\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n                <label for=\"desc\">Escriba una breve descripción acerca de la encuesta</label>\r\n                ");
                 EndContext();
                 BeginContext(1422, 102, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("textarea", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3e7e10a1fe1a4dcd9179588e39d8fdbe", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("textarea", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "47465c77813e47e5ae40c92b2eaccf00", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_TextAreaTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.TextAreaTagHelper>();
@@ -223,7 +223,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_TextAreaTagHelper.For = ModelExpressionPro
                 WriteLiteral("\r\n            </div>\r\n\r\n            <input type=\"submit\" class=\"btn btn-primary\" value=\"Guardar Cambios\" />\r\n            ");
                 EndContext();
                 BeginContext(1645, 72, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7998953fe18c4c2d9e6e8de4a82e9a47", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1ddce7b04bb1406dbe9a3577b6ad0551", async() => {
                     BeginContext(1705, 8, true);
                     WriteLiteral("Cancelar");
                     EndContext();
@@ -286,7 +286,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_TextAreaTagHelper.For = ModelExpressionPro
             WriteLiteral("            ");
             EndContext();
             BeginContext(1846, 380, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "630e1fe1854d423b955f2cb7c3200771", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d190036fd1144477af4d7be182ca9da0", async() => {
                 BeginContext(1919, 257, true);
                 WriteLiteral(@"
                 <p>Se ha encontrado una encuesta con el mismo nombre</p>

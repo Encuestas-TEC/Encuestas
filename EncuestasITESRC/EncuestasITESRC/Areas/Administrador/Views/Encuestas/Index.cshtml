@@ -38,7 +38,6 @@
             <ul class="list-group list" style="width: 100%;">
                 @foreach (var item in Model)
                 {
-                    ViewBag.EncuestaID = item.Id;
                     <li class="list-group-item hvr-glow ">
                         <div class="list-item-float-l ">
                             @if (item.Estado == true)
@@ -57,7 +56,7 @@
 
                         </div>
                         <div class="list-item-float-r">
-                            <a href="~/Administrador/Preguntas/Index" title="Agregar preguntas" class="list-item-action" @*data-toggle="modal" data-target="#addQModal"*@><i class="fas fa-plus-circle"></i></a>
+                            <a href="~/Administrador/Preguntas/Index/@item.Id" title="Agregar preguntas" class="list-item-action" @*data-toggle="modal" data-target="#addQModal"*@><i class="fas fa-plus-circle"></i></a>
                             <a href="~/Administrador/Encuestas/EditarEncuesta/@item.Id" class="list-item-action"><i class="fas fa-edit"></i></a>
                             <a href="javascript:eliminar(@item.Id)" class="list-item-action" @*data-toggle="modal" data-target="#deleteModal"*@><i class="far fa-trash-alt"></i></a>
                             <a href="~/Administrador/Encuestas/VisualizarEncuesta/@item.Id" class="list-item-action" data-toggle="modal" data-target="#seeModal"><i class="fas fa-eye"></i> </a>

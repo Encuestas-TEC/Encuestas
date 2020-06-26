@@ -13,23 +13,11 @@ namespace EncuestasITESRC.Areas.Administrador.Controllers
     [Area("Administrador")]
     public class PreguntasController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(int id)
         {
+            EncuestasRepository encuestas = new EncuestasRepository();
+            ViewBag.NE = encuestas.GetById(id).Titulo;
             return View();
-        }
-        [HttpPost]
-        public IActionResult AgregarPregunta(DAPreguntasViewModel pregunta)
-        {
-            if (ModelState.IsValid)
-            {
-                PreguntasRepository repos = new PreguntasRepository();
-                repos.Insert(pregunta);
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                return View(pregunta);
-            }
         }
     }
 }

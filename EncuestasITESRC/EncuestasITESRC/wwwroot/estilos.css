@@ -234,6 +234,7 @@ table{text-align: center;} */
       font-size: 3.5rem;
     }
   }
+  
   /* ---------------------------index ---------------------------*/
   .emp-profile{
     padding: .5%;
@@ -242,6 +243,43 @@ table{text-align: center;} */
     border-radius: 0.5rem;
     background: #fff;
 }
+@media (min-width: 756px)
+ {
+
+  .emp-profile{
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    border-radius:0;
+}
+.emp-profile
+{
+ 
+  margin: 0;
+  padding: 0;
+}
+.profile-work p{
+  font-size: 12px;
+  color: #818182;
+  font-weight: 600;
+  margin-top: 0;
+}
+.profile-work a{
+  text-decoration: none;
+  color: #495057;
+  font-weight: 600;
+  font-size: 14px;
+}
+.btn-al-close{
+  position: absolute;
+  right: -180px;
+  top:-30px;
+}
+.list-item-float-r2{ margin: 10px;}
+
+}
+
+
 .profile-img{
     text-align: center;
 }
@@ -508,6 +546,7 @@ margin-bottom: 0;
  height: 100%;
   
 }
+.lista-mfix{margin: -5px;}
 .name{
   width: auto;
 }
@@ -874,4 +913,14 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+@media (min-width: 756px) {
+  .main-login{background-image: url(img/tec2.jpeg); background-repeat: no-repeat; height: 667px; background-size: cover; }
+  .form-signin{background-color: white ; border-radius: 15px; margin-top: 50px;}
+}
+
+@media (max-width: 756px) {
+  .main-login{height: 100%; }
+  .form-signin{background-color: white ; border-radius: 15px; margin: auto; background-color: white;margin-top: 60px;}
 }
