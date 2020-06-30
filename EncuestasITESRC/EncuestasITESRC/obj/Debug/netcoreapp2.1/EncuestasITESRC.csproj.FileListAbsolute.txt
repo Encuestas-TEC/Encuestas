@@ -271,3 +271,4 @@ C:\Users\Romar\OneDrive\Escritorio\Encuestas\EncuestasITESRC\EncuestasITESRC\obj
 C:\Users\Romar\OneDrive\Escritorio\Encuestas\EncuestasITESRC\EncuestasITESRC\obj\Debug\netcoreapp2.1\EncuestasITESRC.csproj.CopyComplete
 C:\Users\Romar\OneDrive\Escritorio\Encuestas\EncuestasITESRC\EncuestasITESRC\obj\Debug\netcoreapp2.1\Razor\Areas\Administrador\Views\Encuestas\EditarEncuesta.cshtml.g.cs
 C:\Users\Romar\OneDrive\Escritorio\Encuestas\EncuestasITESRC\EncuestasITESRC\obj\Debug\netcoreapp2.1\Razor\Areas\Administrador\Views\Preguntas\Index.cshtml.g.cs
+C:\Users\Romar\OneDrive\Escritorio\Encuestas\EncuestasITESRC\EncuestasITESRC\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_Preguntas.cshtml.g.cs

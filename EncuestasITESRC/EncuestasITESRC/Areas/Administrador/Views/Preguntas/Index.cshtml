@@ -1,4 +1,4 @@
-﻿@model EncuestasITESRC.Areas.Administrador.Models.DAPreguntasViewModel 
+﻿@model EncuestasITESRC.Areas.Administrador.Models.DAPreguntasViewModel
 @inject EncuestasITESRC.Services.MenuService ms
 @{
     ViewData["Title"] = "Index";
@@ -24,23 +24,7 @@
         <div class="card-body" id="lista">
 
             <ul class="list-group list" style="width: 100%;">
-                <li class="list-group-item hvr-glow">
-                    <div class="list-item-float-l">
-                        <h5></h5>
-
-
-                    </div>
-                    <div class="list-item-float-r lista-mfix">
-
-                        <a href="" aria-placeholder="edit" class="list-item-action" data-toggle="modal" data-target="#editModal"><i class="fas fa-edit"></i></a>
-
-                        <a href="javascript:eliminar()" class="list-item-action" aria-placeholder="delete" @*data-toggle="modal" data-target="#deleteModal"*@><i class="far fa-trash-alt"></i></a>
-                        <a href="respuestas.html" class="list-item-action"><i class="fas fa-eye"></i> </a>
-                    </div>
-
-
-                </li>
-
+                @*@Html.Partial("_Preguntas", (IEnumerable<EncuestasITESRC.Areas.Administrador.Controllers.PreguntasController>)ViewBag.Preguntas)*@
             </ul>
 
             <form method="post" action="~/Administrador/Preguntas/EliminarPregunta">
@@ -81,12 +65,9 @@
                     </div>
                 </form>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" style="border-radius: 5px;" data-dismiss="modal">Cancelar</button>
-
-                    <a class="btn btn-primary" href="#">Añadir</a>
 
                     <input type="submit" class="btn btn-primary" value="Agregar" />
-                    <a class="btn btn-primary" href="~/Administrador/Preguntas/Index">Cancelar</a>
+                    @*<a class="btn btn-primary" href="~/Administrador/Preguntas/Index/">Cancelar</a>*@
 
                 </div>
             </div>

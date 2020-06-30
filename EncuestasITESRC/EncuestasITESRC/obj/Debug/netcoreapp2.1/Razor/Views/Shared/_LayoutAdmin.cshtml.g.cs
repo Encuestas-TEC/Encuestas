@@ -68,12 +68,12 @@ namespace AspNetCore
             WriteLiteral("\r\n<!DOCTYPE html>\r\n<html lang=\"en\">\r\n");
             EndContext();
             BeginContext(87, 1627, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2bb8d7ebae7b40be8cf4a5d4487ce6ea", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e07516a108a448d484cbb12730154688", async() => {
                 BeginContext(93, 143, true);
                 WriteLiteral("\r\n    <meta charset=\"UTF-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no\">\r\n    ");
                 EndContext();
                 BeginContext(236, 101, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "42fc3fc97cfc404b82909f93d6e74c7a", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "0498e0f903264a1e8ff07f030f7304c3", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -94,7 +94,7 @@ namespace AspNetCore
                 WriteLiteral("\r\n    ");
                 EndContext();
                 BeginContext(343, 44, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "fdb1fc6cd4d04ad4a260a052ee887faa", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "215825ced9074aeaa4d542638b13c816", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -113,7 +113,7 @@ namespace AspNetCore
                 WriteLiteral("\r\n    ");
                 EndContext();
                 BeginContext(393, 42, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "d30ea5a455a94ad0b1c0593e072dfcbb", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4f2a72612079469cb7e0b52098211371", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -166,12 +166,12 @@ namespace AspNetCore
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(1716, 5859, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "54674fb531d14994a373ebb70ee5c342", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9133e7ea85024fe898381a582bddc7df", async() => {
                 BeginContext(1722, 95, true);
                 WriteLiteral("\r\n    <header>\r\n        <nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">\r\n            ");
                 EndContext();
                 BeginContext(1817, 109, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "71d73ee6b8e34206b23c961d86583d74", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ddbcee02d2574d4397487eaaf61e7c30", async() => {
                     BeginContext(1874, 48, true);
                     WriteLiteral("\r\n                Encuestas ITESRC\r\n            ");
                     EndContext();
@@ -201,7 +201,7 @@ namespace AspNetCore
                         ");
                 EndContext();
                 BeginContext(2420, 166, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ead2bfef5ee44851a907b7ec97b32781", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ba149f7ae9f24da188f1147f4e1cd83f", async() => {
                     BeginContext(2473, 109, true);
                     WriteLiteral("\r\n                            <i class=\"fas fa-list-ol\"></i> <span>Encuestas</span>\r\n                        ");
                     EndContext();
@@ -223,7 +223,7 @@ namespace AspNetCore
                 WriteLiteral("\r\n                    </li>\r\n                    <li class=\"nav-item\">\r\n                        ");
                 EndContext();
                 BeginContext(2682, 175, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bfc2f4dfb1e5440f9ec65cb66b30be59", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4907271fbfbf406daf91ff002b4e3352", async() => {
                     BeginContext(2736, 117, true);
                     WriteLiteral("\r\n                            <i class=\"fas fa-clipboard-list\"></i> <span>Categorías</span>\r\n                        ");
                     EndContext();
@@ -245,7 +245,7 @@ namespace AspNetCore
                 WriteLiteral("\r\n                    </li>\r\n                    <li class=\"nav-item\">\r\n                        ");
                 EndContext();
                 BeginContext(2953, 154, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "46460e6aa2464b55bb7246948005e0d0", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "53fa5a0b3bab4c27825c14af9e89f8a8", async() => {
                     BeginContext(3005, 98, true);
                     WriteLiteral(" <i class=\"fas fa-user-graduate\"></i><span>Carreras</span>  <span class=\"sr-only\">(current)</span>");
                     EndContext();
@@ -267,7 +267,7 @@ namespace AspNetCore
                 WriteLiteral("\r\n                    </li>\r\n                </ul>\r\n\r\n                <label class=\"form-inline my-2 my-lg-0\">\r\n\r\n                    ");
                 EndContext();
                 BeginContext(3241, 229, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5081d8904a5e4b4fac12b113b9c40827", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "696b83ee0b4f4b50b70fe201c3c40536", async() => {
                     BeginContext(3357, 109, true);
                     WriteLiteral("\r\n                        <i class=\"fas fa-sign-out-alt\"></i><span>Cerrar Sesión</span>\r\n                    ");
                     EndContext();

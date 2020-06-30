@@ -1,0 +1,22 @@
+﻿@model IEnumerable<EncuestasITESRC.Models.Pregunta>
+
+@foreach (var item in Model)
+{
+    <li class="list-group-item hvr-glow">
+        <div class="list-item-float-l">
+            <h5></h5>
+
+
+        </div>
+        <div class="list-item-float-r lista-mfix">
+
+            <a href="" aria-placeholder="edit" class="list-item-action" data-toggle="modal" data-target="#editModal"><i class="fas fa-edit"></i></a>
+
+            <a href="javascript:eliminar()" class="list-item-action" aria-placeholder="delete" @*data-toggle="modal" data-target="#deleteModal"*@><i class="far fa-trash-alt"></i></a>
+            <a href="respuestas.html" class="list-item-action"><i class="fas fa-eye"></i> </a>
+        </div>
+
+
+    </li>
+}
+
